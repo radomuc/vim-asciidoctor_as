@@ -1,0 +1,98 @@
+*vim-asciidoctor_quickreference.txt*                       For Vim version 8.2
+
+Last Change: 2023-04-13
+Author: Radomir Ochtyra <radeko@gmx.de>
+
+==============================================================================
+		      Asciidoctor Syntax Quick Reference
+==============================================================================
+
+
+	       1. Paragraphs ...................|adoc_paragraphs|
+	       2. Text formatting ..............|adoc_formatting|
+	       3. Links .............................|adoc_links|
+	       4. Document header .............................
+	       5. Section titles ..............................
+	       6. Automatic TOC ...............................
+	       7. Includes ....................................
+	       8. Lists .......................................
+	       9. Images ......................................
+	      10. Audio .......................................
+	      11. Videos ......................................
+	      12. Keyboard, button, and menu macros ...........
+	      13. Literals and source code ....................
+	      14. Admonitions .................................
+	      15. More delimited blocks .......................
+	      16. Tables ......................................
+	      17. Ids, roles, and options .....................
+	      18. Comments ....................................
+	      19. Breaks ......................................
+	      20. Attributes and substitutions ................
+	      21. Text replacements ...........................
+	      22. Escaping substitutions ......................
+	      23. Text replacements ...........................
+	      24. Escaping substitutions ......................
+	      25. Bibliography ................................
+	      26. Footnotes ...................................
+	      27. Markdown compatibility ......................
+
+
+==============================================================================
+1. Paragraphs                                                *adoc_paragraphs*
+
+1: Example (Paragraph):
+------------------------------------------------------------------------------ >
+    Paragraphs don't require special markup in AsciiDoc.
+    A paragraph is defined by one or more consecutive lines of text.
+    Line breaks within a paragraph are not displayed.
+
+    Leave at least one empty line to begin a new paragraph.
+< -----------------------------------------------------------------------------
+
+2: Example (Literal Paragraph):
+------------------------------------------------------------------------------ >
+    A normal paragraph.
+
+     A literal paragraph.
+     One or more consecutive lines indented by at least one space.
+
+     The text is shown in a fixed-width (typically monospace) font.
+     The lines are preformatted (i.e., as formatted in the source).
+     Spaces and newlines,
+     like the ones in this sentence,
+     are preserved.
+< -----------------------------------------------------------------------------
+
+3. Example (Hard line breaks):
+------------------------------------------------------------------------------ >
+    Roses are red, +
+    violets are blue.
+
+    [%hardbreaks]
+    A ruby is red.
+    Java is black.
+< ----------------------------------------------------------------------------
+
+4. Example (Lead paragraph):
+------------------------------------------------------------------------------ >
+    [.lead]
+    This text will be styled as a lead paragraph (i.e., larger font).
+
+    This paragraph will not be.
+< -----------------------------------------------------------------------------
+
+NOTE (TIP):
+    The default Asciidoctor stylesheet automatically styles the first
+    paragraph of the preamble as a lead paragraph if no role is specified on
+    that paragraph. 
+
+
+==============================================================================
+2. Text formating                                             *adoc_formatting*
+
+
+
+
+
+
+vim:tw=78:ts=8:noet:ft=help:norl:
