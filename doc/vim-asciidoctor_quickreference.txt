@@ -1,44 +1,57 @@
-*vim-asciidoctor_quickreference.txt*                       For Vim version 8.2
+*vim-asciidoctor_quickreference.txt*               Asciidoctor Quick Reference
 
-Last Change: 2023-04-13
-Author: Radomir Ochtyra <radeko@gmx.de>
+Vim-Version : 8.2
+Created     : 2023-04-13
+Last Change : 2023-04-13
+Author      : Radomir Ochtyra <radeko@gmx.de>
+------------------------------------------------------------------------------
+==============================================================================
+
+           ┏━┃┏━┛┏━┛┛┛┏━ ┏━┃┏━┛━┏┛┏━┃┏━┃  ┏━┃ ┃ ┃┛┏━┛┃ ┃  ┏━┃┏━┛┏━┛~
+           ┏━┃━━┃┃  ┃┃┃ ┃┃ ┃┃   ┃ ┃ ┃┏┏┛  ┃ ┃ ┃ ┃┃┃  ┏┛   ┏┏┛┏━┛┏━┛~
+           ┛ ┛━━┛━━┛┛┛━━ ━━┛━━┛ ┛ ━━┛┛ ┛  ━━━┛━━┛┛━━┛┛ ┛  ┛ ┛━━┛┛  ~
+
+                       Asciidoctor Syntax Quick Reference
+		       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+	     Designed to write fast and quick adoc-documentations
 
 ==============================================================================
-		      Asciidoctor Syntax Quick Reference
+CONTENTS                                                     *adoc_q_contents*
+
+
+      1. Paragraphs .......................... |adoc_q_paragraphs|
+      2. Text formatting ..................... |adoc_q_formatting|
+      3. Links ............................... |adoc_q_links|
+      4. Document header ..................... |adoc_q_documentHeader|
+      5. Section titles ...................... |adoc_q_sectionTitles|
+      6. Automatic TOC ....................... |adoc_q_automaticTOC|
+      7. Includes ............................ |adoc_q_includes|
+      8. Lists ............................... |adoc_q_lists|
+      9. Images .............................. |adoc_q_images|
+     10. Audio ............................... |adoc_q_audio|
+     11. Videos .............................. |adoc_q_videos|
+     12. Keyboard macros ..................... |adoc_q_keyboard|
+     13. Menu macros ......................... |adoc_q_menuMacro|
+     14. Button macros ....................... |adoc_q_buttonMacro|
+     15. Literals ............................ |adoc_q_literals|
+     16. Source code ......................... |adoc_q_sourceCode|
+     17. Admonitions ......................... |adoc_q_admonitions|
+     18. More delimited blocks ............... |adoc_q_moreDelimitedBlocks|
+     19. Tables .............................. |adoc_q_tables|
+     20. Ids, roles, and options ............. |adoc_q_IdsRolesOptions|
+     21. Comments ............................ |adoc_q_comments|
+     22. Breaks .............................. |adoc_q_breaks|
+     23. Attributes and substitutions ........ |adoc_q_attributes|
+     24. Text replacements ................... |adoc_q_textReplacements|
+     25. Escaping substitutions .............. |adoc_q_escapingSubstituations|
+     26. Bibliography ........................ |adoc_q_bibliography|
+     27. Footnotes ........................... |adoc_q_footnotes|
+     28. Markdown compatibility .............. |adoc_q_markdownCompatiblity|
+
+
 ==============================================================================
-
-
-	       1. Paragraphs ...................|adoc_paragraphs|
-	       2. Text formatting ..............|adoc_formatting|
-	       3. Links .............................|adoc_links|
-	       4. Document header .............................
-	       5. Section titles ..............................
-	       6. Automatic TOC ...............................
-	       7. Includes ....................................
-	       8. Lists .......................................
-	       9. Images ......................................
-	      10. Audio .......................................
-	      11. Videos ......................................
-	      12. Keyboard, button, and menu macros ...........
-	      13. Literals and source code ....................
-	      14. Admonitions .................................
-	      15. More delimited blocks .......................
-	      16. Tables ......................................
-	      17. Ids, roles, and options .....................
-	      18. Comments ....................................
-	      19. Breaks ......................................
-	      20. Attributes and substitutions ................
-	      21. Text replacements ...........................
-	      22. Escaping substitutions ......................
-	      23. Text replacements ...........................
-	      24. Escaping substitutions ......................
-	      25. Bibliography ................................
-	      26. Footnotes ...................................
-	      27. Markdown compatibility ......................
-
-
-==============================================================================
-1. Paragraphs                                                *adoc_paragraphs*
+1. Paragraphs                                              *adoc_q_paragraphs*
 
 1: Example (Paragraph):
 ------------------------------------------------------------------------------ >
@@ -83,16 +96,1326 @@ Author: Radomir Ochtyra <radeko@gmx.de>
 
 NOTE (TIP):
     The default Asciidoctor stylesheet automatically styles the first
-    paragraph of the preamble as a lead paragraph if no role is specified on
-    that paragraph. 
+    paragraph of the preamble as a "lead paragraph"#<1> if no role is
+    specified on that paragraph.
+    --------------------------------------------------------------------------
+    1) https://docs.asciidoctor.org/asciidoc/latest/blocks/preamble-and-lead/
+    --------------------------------------------------------------------------
 
 
 ==============================================================================
-2. Text formating                                             *adoc_formatting*
+2. Text formatting                                           *adoc_q_formatting*
+
+1. Example (Constrained bold, italic, and monospace):
+------------------------------------------------------------------------------ >
+    It has *strong* significance to me.
+    I _cannot_ stress this enough.
+    Type `OK` to accept.
+    That *_really_* has to go.
+    Can't pick one? Let's use them `*_all_*`.
+< -----------------------------------------------------------------------------
+
+2. Example (nconstrained bold, italic, and monospace):
+------------------------------------------------------------------------------ >
+    **C**reate, **R**ead, **U**pdate, and **D**elete (CRUD)
+    That's fan__freakin__tastic!
+    Don't pass generic ``Object``s to methods that accept ``String``s!
+    It was Beatle**__mania__**!
+< -----------------------------------------------------------------------------
+
+3. Example (Highlight, underline, strikethrough, and custom role):
+------------------------------------------------------------------------------ >
+    Mark my words, #automation is essential#.
+    ##Mark##up refers to text that contains formatting ##mark##s.
+    Where did all the [.underline]#cores# go?
+    We need [.line-through]#ten# twenty VMs.
+    A [.myrole]#custom role# must be fulfilled by the theme.
+< -----------------------------------------------------------------------------
+
+4. Example (Superscript and subscript):
+------------------------------------------------------------------------------ >
+    ^super^script
+    ~sub~script
+< -----------------------------------------------------------------------------
 
 
+5. Example (Smart quotes and apostrophes):
+------------------------------------------------------------------------------ >
+    "`double curved quotes`"
+    '`single curved quotes`'
+    Olaf's desk was a mess.
+    A ``std::vector```'s size is the number of items it contains.
+    All of the werewolves`' desks were a mess.
+    Olaf had been with the company since the `'00s.
+< -----------------------------------------------------------------------------
 
 
+==============================================================================
+2. Links                                                        *adoc_q_links*
 
+1. Example (Autolinks, URL macro, and mailto macro):
+------------------------------------------------------------------------------ >
+    https://asciidoctor.org - automatic!
+    https://asciidoctor.org[Asciidoctor]
+    devel@discuss.example.org
+    mailto:devel@discuss.example.org[Discuss]
+    mailto:join@discuss.example.org[Subscribe,Subscribe me,I want to join!]
+< -----------------------------------------------------------------------------
+
+2. Example (URL macros with attributes):
+------------------------------------------------------------------------------ >
+    https://chat.asciidoc.org[Discuss AsciiDoc,role=external,window=_blank]
+    https://chat.asciidoc.org[Discuss AsciiDoc^]
+< -----------------------------------------------------------------------------
+
+NOTE (IMPORTANT):
+    The link: macro prefix is not required when the target starts with a URL
+    scheme like https:. The URL scheme acts as an implicit macro prefix.
+
+NOTE (CAUTION):
+    If the link text contains a comma and the text is followed by one or more
+    named attributes, you must enclose the text in double quotes. Otherwise,
+    the text will be cut off at the comma (and the remaining text will get
+    pulled into the attribute parsing).
+
+3. Example (URLs with spaces and special characters):
+------------------------------------------------------------------------------ >
+    link:++https://example.org/?q=[a b]++[URL with special characters]
+    https://example.org/?q=%5Ba%20b%5D[URL with special characters]
+< -----------------------------------------------------------------------------
+
+4. Example (Link to relative file):
+------------------------------------------------------------------------------ >
+    link:index.html[Docs]
+< -----------------------------------------------------------------------------
+
+
+5. Example (Inline anchors):
+------------------------------------------------------------------------------ >
+    [[bookmark-a]]Inline anchors make arbitrary content referenceable.
+    [#bookmark-b]#Inline anchors can be applied to a phrase like this one.#
+    anchor:bookmark-c[]Use a cross reference to link to this location.
+    [[bookmark-d,last paragraph]]The xreflabel attribute will be used as ... 
+< -----------------------------------------------------------------------------
+
+6. Example (Cross references):
+------------------------------------------------------------------------------ >
+    See <<paragraphs>> to learn how to write paragraphs.
+    Learn how to organize the document into <<section-titles,sections>>.
+< -----------------------------------------------------------------------------
+
+7. Example (Inter-document cross references):
+------------------------------------------------------------------------------ >
+    Refer to xref:document-b.adoc#section-b[Section B of Document B] for more+
+    information.
+    If you never return from xref:document-b.adoc[Document B], we'll send help.
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+4. Document header                                       *adoc_q_documentHeader*
+
+The "document header"#<1> is optional. The header may not contain any empty
+lines and must be separated from the content by at least one empty line.
+------------------------------------------------------------------------------
+1) https://docs.asciidoctor.org/asciidoc/latest/document/header/
+------------------------------------------------------------------------------
+
+1. Example (Title):
+------------------------------------------------------------------------------ >
+    = Document Title
+
+    This document provides...
+< -----------------------------------------------------------------------------
+
+2. Example (Title and author line):
+------------------------------------------------------------------------------ >
+    = Document Title
+    Author Name <author@email.org>
+
+    This document provides...
+< -----------------------------------------------------------------------------
+
+3. Example (Title, author line, and revision line):
+------------------------------------------------------------------------------ >
+    = Document Title
+    Author Name <author@email.org>; Another Author <a.author@email.org>
+    v2.0, 2019-03-22
+
+    This document provides...
+< -----------------------------------------------------------------------------
+NOTE (IMPORTANT):
+    You cannot have a "revision line"#<1> without an "author line"#<2>.
+    --------------------------------------------------------------------------
+    1) https://docs.asciidoctor.org/asciidoc/latest/document/revision-line/
+    2) https://docs.asciidoctor.org/asciidoc/latest/document/author-line/
+    --------------------------------------------------------------------------
+
+4. Example (Document header with attribute entries):
+------------------------------------------------------------------------------ >
+    = Document Title
+    Author Name <author@email.org>
+    v2.0, 2019-03-22
+    :toc:
+    :homepage: https://example.org
+
+    This document provides...
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+5. Titles                                               *adoc_q_sectionTitles*
+
+Type: article
+
+    When the document type is article (the default), the document can only
+    have one level 0 section title (=), which is the document title (i.e.,
+    doctitle).
+
+1. Example (Article section levels):
+------------------------------------------------------------------------------ >
+    = Document Title (Level 0)
+    == Level 1 Section Title
+    === Level 2 Section Title
+    ==== Level 3 Section Title
+    ===== Level 4 Section Title
+    ====== Level 5 Section Title
+    == Another Level 1 Section Title
+< -----------------------------------------------------------------------------
+
+Type: book
+
+    he book document type can have additional level 0 section titles, which
+    are interpreted as "parts"#<1>. The presence of at least one part implicitly
+    makes the document a multi-part book.
+    --------------------------------------------------------------------------
+    1) https://docs.asciidoctor.org/asciidoc/latest/sections/parts/
+    --------------------------------------------------------------------------
+
+2. Example (Book section levels):
+------------------------------------------------------------------------------ >
+    = Document Title (Level 0)
+    == Level 1 Section Title
+    = Level 0 Section Title (Part)
+    == Level 1 Section Title
+    === Level 2 Section Title
+    ==== Level 3 Section Title
+    ===== Level 4 Section Title
+    ====== Level 5 Section Title
+    = Another Level 0 Section Title (Part)
+< -----------------------------------------------------------------------------
+
+3. Example (Discrete heading (not a section)):
+------------------------------------------------------------------------------ >
+    [discrete]
+    === I'm an independent heading!
+
+    This paragraph is it's sibling, not it's child.
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+6. Automatic TOC                                         *adoc_q_automaticTOC*
+
+1. Example (Include document parts):
+------------------------------------------------------------------------------ >
+    = Document Title
+    Doc Writer <doc.writer@email.org>
+    :toc:
+< -----------------------------------------------------------------------------
+NOTE:
+    The Table of Content's "title"#<1>, "displayed section depth"#<2>, and
+    "postion"#<3> can be customized.
+    --------------------------------------------------------------------------
+    1) https://docs.asciidoctor.org/asciidoc/latest/toc/title/
+    2) https://docs.asciidoctor.org/asciidoc/latest/toc/levels/
+    3) https://docs.asciidoctor.org/asciidoc/latest/toc/position/
+    --------------------------------------------------------------------------
+
+2. Example (Include document parts):
+------------------------------------------------------------------------------ >
+    = Reference Documentation
+    Lead Developer
+
+    This is documentation for project X.
+
+    include::basics.adoc[]
+    include::installation.adoc[]
+    include::example.adoc[]
+< -----------------------------------------------------------------------------
+
+3. Example (Include content by tagged regions or lines):
+------------------------------------------------------------------------------ >
+    include::filename.txt[tag=definition]
+    include::filename.txt[lines=5..10]
+< -----------------------------------------------------------------------------
+
+4. Example (Include content from a URL):
+------------------------------------------------------------------------------ >
+    include::https://raw.githubusercontent.com/asciidoctor/asciidoctor/main/\
+    README.adoc[]
+< -----------------------------------------------------------------------------
+WARNING:
+    Including content from a URL is potentially dangerous, so it’s disabled if
+    the safe mode is SECURE or greater. Assuming the safe mode is less than
+    SECURE, you must also set the allow-uri-read attribute to permit the
+    AsciiDoc processor to read content from a URL.
+
+
+==============================================================================
+7. Includes                                                  *adoc_q_includes*
+
+1. Example (Include document parts):
+------------------------------------------------------------------------------ >
+    = Reference Documentation
+    Lead Developer
+
+    This is documentation for project X.
+
+    include::basics.adoc[]
+
+    include::installation.adoc[]
+
+    include::example.adoc[]
+< -----------------------------------------------------------------------------
+
+2. Example (Include content from a URL):
+------------------------------------------------------------------------------ >
+    include::https://raw.githubusercontent.com/asciidoctor/asciidoctor/main/\
+    README.adoc[]
+< -----------------------------------------------------------------------------
+WARNING:
+    Including content from a URL is potentially dangerous, so it’s disabled if
+    the safe mode is SECURE or greater. Assuming the safe mode is less than
+    SECURE, you must also set the allow-uri-read attribute to permit the
+    AsciiDoc processor to read content from a URL.
+
+
+==============================================================================
+8. Lists                                                        *adoc_q_lists*
+
+1. Example (Unordered list):
+------------------------------------------------------------------------------ >
+    * List item
+    ** Nested list item
+    *** Deeper nested list item
+    * List item
+     ** Another nested list item
+    * List item
+< -----------------------------------------------------------------------------
+
+2. Example (Unordered list max level nesting):
+------------------------------------------------------------------------------ >
+    * Level 1 list item
+    ** Level 2 list item
+    *** Level 3 list item
+    **** Level 4 list item
+    ***** Level 5 list item
+    ****** etc.
+    * Level 1 list item
+< -----------------------------------------------------------------------------
+
+3. Example (Ordered list):
+------------------------------------------------------------------------------ >
+    . Step 1
+    . Step 2
+    .. Step 2a
+    .. Step 2b
+    . Step 3
+< -----------------------------------------------------------------------------
+
+4. Example (Ordered list max level nesting):
+------------------------------------------------------------------------------ >
+    . Level 1 list item
+    .. Level 2 list item
+    ... Level 3 list item
+    .... Level 4 list item
+    ..... Level 5 list item
+    . Level 1 list item
+< -----------------------------------------------------------------------------
+NOTE:
+    Ordered lists support "numeration styles"#<1> such as lowergreek and
+    decimal-leading-zero.
+    --------------------------------------------------------------------------
+    1) https://docs.asciidoctor.org/asciidoc/latest/lists/ordered/#styles
+    --------------------------------------------------------------------------
+
+5. Example (Checklist):
+------------------------------------------------------------------------------ >
+    * [*] checked
+    * [x] also checked
+    * [ ] not checked
+    * normal list item
+< -----------------------------------------------------------------------------
+
+6. Example (Description list):
+------------------------------------------------------------------------------ >
+    First term:: The description can be placed on the same line
+    as the term.
+    Second term::
+    Description of the second term.
+    The description can also start on its own line.
+< -----------------------------------------------------------------------------
+
+7. Example (Question and answer list):
+------------------------------------------------------------------------------ >
+    [qanda]
+    What is the answer?::
+    This is the answer.
+
+    Are cameras allowed?::
+    Are backpacks allowed?::
+    No.
+< -----------------------------------------------------------------------------
+
+8. Example (Mixed):
+------------------------------------------------------------------------------ >
+    Operating Systems::
+      Linux:::
+	. Fedora
+	  * Desktop
+	. Ubuntu
+	  * Desktop
+	  * Server
+      BSD:::
+	. FreeBSD
+	. NetBSD
+
+    Cloud Providers::
+      PaaS:::
+	. OpenShift
+	. CloudBees
+      IaaS:::
+	. Amazon EC2
+	. Rackspace
+< -----------------------------------------------------------------------------
+NOTE (TIP):
+    Lists can be indented. Leading whitespace is not significant. 
+
+9. Example (Complex content in outline lists):
+------------------------------------------------------------------------------ >
+    * Every list item has at least one paragraph of content,
+      which may be wrapped, even using a hanging indent.
+    +
+    Additional paragraphs or blocks are adjoined by putting
+    a list continuation on a line adjacent to both blocks.
+    +
+    list continuation:: a plus sign (`{plus}`) on a line by itself
+
+    * A literal paragraph does not require a list continuation.
+
+     $ cd projects/my-book
+
+    * AsciiDoc lists may contain any complex content.
+    +
+    |===
+    |Column 1, Header Row |Column 2, Header Row
+
+    |Column 1, Row 1
+    |Column 2, Row 1
+    |===
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+9. Images                                                      *adoc_q_images*
+
+You can use the "imagesdir attribute"#<1> to avoid hard coding the common path to
+your images in every image macro. The value of this attribute can be an
+absolute path, relative path, or base URL. If the image target is a relative
+path, the attribute’s value is prepended (i.e., it’s resolved relative to the
+value of the imagesdir attribute). If the image target is a URL or absolute
+path, the attribute’s value is not prepended.
+------------------------------------------------------------------------------
+1) https://docs.asciidoctor.org/asciidoc/latest/macros/images-directory/
+------------------------------------------------------------------------------
+
+1. Example (Block image macro):
+------------------------------------------------------------------------------ >
+    image::sunset.jpg[]
+
+    image::sunset.jpg[Sunset]
+
+    .A mountain sunset
+    [#img-sunset,caption="Figure 1: ",link=https://www.flickr.com/photos/javh\
+    /5448336655]
+    image::macros:sunset.jpg[Sunset,200,100]
+
+    image::https://asciidoctor.org/images/octocat.jpg[GitHub mascot]
+< -----------------------------------------------------------------------------
+NOTE:
+    Two colons following the image keyword in the macro (i.e., image::)
+    indicates a block image (aka figure), whereas one colon following the
+    image keyword (i.e., image:) indicates an inline image. (All macros follow
+    this pattern).  You use an inline image when you need to place the image
+    in a line of text.  Otherwise, you should prefer the block form.
+
+2. Example (Inline image macro):
+------------------------------------------------------------------------------ >
+    Click image:play.png[] to get the party started.
+    Click image:pause.png[title="Pause"] when you need a break.
+< -----------------------------------------------------------------------------
+
+3. Example (Inline image macro with positioning role):
+------------------------------------------------------------------------------ >
+    image:sunset.jpg[Sunset,150,150,role=right] What a beautiful sunset!
+< -----------------------------------------------------------------------------
+
+4. Example (Embedded):
+------------------------------------------------------------------------------ >
+    = Document Title
+    :data-uri:
+< -----------------------------------------------------------------------------
+NOTE:
+When the data-uri attribute is set, all images in the document—​including
+admonition icons—​are embedded into the document as "data URIs"#<1>. You
+can also pass it as a command line argument using -a data-uri.
+------------------------------------------------------------------------------
+1) https://developer.mozilla.org/en-US/docs/data_URIs
+------------------------------------------------------------------------------
+
+
+==============================================================================
+10. Audio                                                       *adoc_q_audio*
+
+1. Example (Block audio macro):
+------------------------------------------------------------------------------ >
+    audio::ocean-waves.wav[]
+    audio::ocean-waves.wav[start=60,opts=autoplay]
+< -----------------------------------------------------------------------------
+NOTE:
+    You can control the audio settings using "additional attributes and
+    options"#<1> on the macro.
+    --------------------------------------------------------------------------
+    1) https://docs.asciidoctor.org/asciidoc/latest/macros/audio-and-video/
+    --------------------------------------------------------------------------
+
+
+==============================================================================
+11. Videos                                                     *adoc_q_vidoes*
+
+1. Example (Block video macro):
+------------------------------------------------------------------------------ >
+    video::video-file.mp4[]
+    video::video-file.mp4[width=640,start=60,opts=autoplay]
+< -----------------------------------------------------------------------------
+
+2. Example (Embedded YouTube video):
+------------------------------------------------------------------------------ >
+    video::RvRhUHTV_8k[youtube]
+< -----------------------------------------------------------------------------
+
+3. Example (Embedded Vimeo video):
+------------------------------------------------------------------------------ >
+    video::67480300[vimeo]
+< -----------------------------------------------------------------------------
+NOTE:
+    You can control the video settings using "additional attributes and
+    options"#<1> on the macro.
+    --------------------------------------------------------------------------
+    1) https://docs.asciidoctor.org/asciidoc/latest/macros/audio-and-video/
+    --------------------------------------------------------------------------
+
+
+==============================================================================
+12. Keyboard macros                                     *adoc_q_keyboardMacro*
+
+NOTE (IMPORTANT):
+    You must set the experimental attribute in the document header to enable
+    these macros.
+
+1. Example (Keyboard macro):
+------------------------------------------------------------------------------ >
+    |===
+    |Shortcut |Purpose
+
+    |kbd:[F11]
+    |Toggle fullscreen
+
+    |kbd:[Ctrl+T]
+    |Open a new tab
+    |===
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+13. Menu macro                                              *adoc_q_menuMacro*
+
+NOTE (IMPORTANT):
+    You must set the experimental attribute in the document header to enable
+    these macros.
+
+1. Example (Menu macro):
+------------------------------------------------------------------------------ >
+    To save the file, select menu:File[Save].
+
+    Select menu:View[Zoom > Reset] to reset the zoom level to the default \
+    setting.
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+14. Button macro                                          *adoc_q_buttonMacro*
+
+NOTE (IMPORTANT):
+    You must set the experimental attribute in the document header to enable
+    these macros.
+
+2. Example (Button macro):
+------------------------------------------------------------------------------ >
+    Press the btn:[OK] button when you are finished.
+
+    Select a file in the file navigator and click btn:[Open].
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+15. Literals                                                 *adoc_q_literals*
+
+1. Example (Inline literal monospace):
+------------------------------------------------------------------------------ >
+    Output literal monospace text, such as `+{backtick}+` or `+http://localho\
+    st:8080+`, by enclosing the text in a pair of pluses surrounded by a pair\
+     backticks.
+< -----------------------------------------------------------------------------
+
+2. Example (Literal paragraph):
+------------------------------------------------------------------------------ >
+    Normal line.
+
+     Indent line by one space to create a literal line.
+
+    Normal line.
+< -----------------------------------------------------------------------------
+
+3. Example (Literal block):
+------------------------------------------------------------------------------ >
+    ....
+    error: 1954 Forbidden search
+    absolutely fatal: operation lost in the dodecahedron of doom
+
+    Would you like to try again? y/n
+    ....
+< -----------------------------------------------------------------------------
+
+4. Example (Listing block with title):
+------------------------------------------------------------------------------ >
+    .Gemfile.lock
+    ----
+    GEM
+      remote: https://rubygems.org/
+      specs:
+	asciidoctor (2.0.15)
+
+    PLATFORMS
+      ruby
+
+    DEPENDENCIES
+      asciidoctor (~> 2.0.15)
+    ----
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+16. Source code                                            *adoc_q_sourceCode*
+
+1. Example (Source block with title and syntax highlighting):
+------------------------------------------------------------------------------ >
+    .Some Ruby code
+    [source,ruby]
+    ----
+    require 'sinatra'
+
+    get '/hi' do
+      "Hello World!"
+    end
+    ----
+< -----------------------------------------------------------------------------
+NOTE (IMPORTANT):
+    You must enable "source highlighting"#<1> by setting the source-highlighter
+    attribute in the document header, CLI, or API. >
+	:source-highlighter: rouge
+<
+    --------------------------------------------------------------------------
+    1) https://docs.asciidoctor.org/asciidoc/latest/verbatim/source-highlighter/
+    --------------------------------------------------------------------------
+
+    See "Syntax Highlighting"#<1> to learn which values are accepted when using
+    Asciidoctor.
+    --------------------------------------------------------------------------
+    1) https://docs.asciidoctor.org/asciidoctor/latest/syntax-highlighting/
+    --------------------------------------------------------------------------
+
+2. Example (Source block with callouts):
+------------------------------------------------------------------------------ >
+    [source,ruby]
+    ----
+    require 'sinatra' // <1>
+
+    get '/hi' do // <2>
+      "Hello World!" // <3>
+    end
+    ----
+    <1> Library import
+    <2> URL mapping
+    <3> HTTP response body
+< -----------------------------------------------------------------------------
+
+3. Example (Make callouts non-selectable):
+------------------------------------------------------------------------------ >
+    ----
+    line of code // <1>
+    line of code # <2>
+    line of code ;; <3>
+    line of code <!--4-->
+    ----
+    <1> A callout behind a line comment for C-style languages.
+    <2> A callout behind a line comment for Ruby, Python, Perl, etc.
+    <3> A callout behind a line comment for Clojure.
+    <4> A callout behind a line comment for XML or SGML languages like HTML.
+< -----------------------------------------------------------------------------
+
+4. Example (Source block content included from a file):
+------------------------------------------------------------------------------ >
+    [,ruby]
+    ----
+    include::app.rb[]
+    ----
+< -----------------------------------------------------------------------------
+
+5. Example (Source block content included from file relative to source \
+   directory):
+------------------------------------------------------------------------------ >
+    :sourcedir: src/main/java
+
+    [source,java]
+    ----
+    include::{sourcedir}/org/asciidoctor/Asciidoctor.java[]
+    ----
+< -----------------------------------------------------------------------------
+
+6. Example (Strip leading indentation from partial file content):
+------------------------------------------------------------------------------ >
+    [source,ruby]
+    ----
+    include::lib/app.rb[tag=main,indent=0]
+    ----
+< -----------------------------------------------------------------------------
+NOTE:
+    The "indent attribute"#<1> is frequently used when including source code by
+    "tagged region"#<2> or "lines"#<3>. It can be specified on the include
+    directive itself or the enclosing literal, listing, or source block.
+
+    When indent is 0, the leading block indent is stripped.
+
+    When indent is greater than 0, the leading block indent is first stripped,
+    then a block is indented by the number of columns equal to this value.
+    --------------------------------------------------------------------------
+    1) https://docs.asciidoctor.org/asciidoc/latest/directives/include-with-indent/
+    2) https://docs.asciidoctor.org/asciidoc/latest/directives/include-tagged-regions/
+    3) https://docs.asciidoctor.org/asciidoc/latest/directives/include-lines/
+    --------------------------------------------------------------------------
+
+
+11. Example (Source paragraph (no empty lines)):
+------------------------------------------------------------------------------ >
+    [source,xml]
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+    This is normal content.
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+17. Admonitions                                             *adoc_q_admonitions*
+
+1. Example (Admonition paragraph):
+------------------------------------------------------------------------------ >
+    NOTE: An admonition draws the reader's attention to auxiliary information.
+
+    Here are the other built-in admonition types:
+
+    IMPORTANT: Don't forget the children!
+
+    TIP: Look for the warp zone under the bridge.
+
+    CAUTION: Slippery when wet.
+
+    WARNING: The software you're about to use is untested.
+
+    IMPORTANT: Sign off before stepping away from your computer.
+< -----------------------------------------------------------------------------
+
+2. Example (Admonition block):
+------------------------------------------------------------------------------ >
+    [NOTE]
+    ====
+    An admonition block may contain complex content.
+
+    .A list
+    - one
+    - two
+    - three
+
+    Another paragraph.
+    ====
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+18. More delimited blocks                         *adoc_q_moreDelimitedBlocks*
+
+Any block can have a title. A block title is defined using a line of text
+above the block that starts with a dot. That dot cannot be followed by a
+space. For block images, the title is displayed below the block. For all other
+blocks, the title is typically displayed above it.
+
+1. Example (Sidebar block):
+------------------------------------------------------------------------------ >
+    .Optional Title
+    ****
+    Sidebars are used to visually separate auxiliary bits of content
+    that supplement the main text.
+    ****
+< -----------------------------------------------------------------------------
+
+2. Example (Example block):
+------------------------------------------------------------------------------ >
+    ====
+    Here's a sample AsciiDoc document:
+
+    ----
+    = Title of Document
+    Doc Writer
+    :toc:
+
+    This guide provides...
+    ----
+
+    The document header is useful, but not required.
+    ====
+< -----------------------------------------------------------------------------
+
+3. Example (Blockquotes):
+------------------------------------------------------------------------------ >
+    [quote,Abraham Lincoln,Address delivered at the dedication of the \
+    Cemetery at Gettysburg]
+    ____
+    Four score and seven years ago our fathers brought forth
+    on this continent a new nation...
+    ____
+
+    [quote,Albert Einstein]
+    A person who never made a mistake never tried anything new.
+
+    ____
+    A person who never made a mistake never tried anything new.
+    ____
+
+    [quote,Charles Lutwidge Dodgson,'Mathematician and author, also known as \
+    https://en.wikipedia.org/wiki/Lewis_Carroll[Lewis Carroll]']
+    ____
+    If you don't know where you are going, any road will get you there.
+    ____
+
+    "I hold it that a little rebellion now and then is a good thing,
+    and as necessary in the political world as storms in the physical."
+    -- Thomas Jefferson, Papers of Thomas Jefferson: Volume 11
+< -----------------------------------------------------------------------------
+
+4. Example (Open blocks):
+------------------------------------------------------------------------------ >
+    --
+    An open block can be an anonymous container,
+    or it can masquerade as any other block.
+    --
+
+    [source]
+    --
+    puts "I'm a source block!"
+    --
+< -----------------------------------------------------------------------------
+
+5. Example (Passthrough block):
+------------------------------------------------------------------------------ >
+    ++++
+    <p>
+    Content in a passthrough block is passed to the output unprocessed.
+    That means you can include raw HTML, like this embedded Gist:
+    </p>
+
+    <script src="https://gist.github.com/mojavelinux/5333524.js">
+    </script>
+    ++++
+< -----------------------------------------------------------------------------
+
+6. Example (Customize block substitutions):
+------------------------------------------------------------------------------ >
+    :release-version: 2.4.3
+
+    [source,xml,subs=attributes+]
+    ----
+    <dependency>
+      <groupId>org.asciidoctor</groupId>
+      <artifactId>asciidoctorj</artifactId>
+      <version>{release-version}</version>
+    </dependency>
+    ----
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+19. Tables                                                      *adoc_q_tables*
+
+1. Example (Table with a title, two columns, a header row, and two rows of \
+   content):
+------------------------------------------------------------------------------ >
+    .Table Title
+    |===
+    |Column 1, Header Row |Column 2, Header Row           #<1>
+    #<2>
+    |Cell in column 1, row 1
+    |Cell in column 2, row 1
+
+    |Cell in column 1, row 2
+    |Cell in column 2, row 2
+    |===
+< -----------------------------------------------------------------------------
+NOTE:
+    1) Unless the cols attribute is specified, the number of columns is equal
+       to the number of cell separators on the first (non-empty) line.
+    2) When an empty line immediately follows a non-empty line at the start of
+       the table, the cells in the first line get promoted to the table header.
+
+2. Example (Table with two columns, a header row, and two rows of content):
+------------------------------------------------------------------------------ >
+    [%header,cols=2*]                    #<1>
+    |===
+    |Name of Column 1
+    |Name of Column 2
+
+    |Cell in column 1, row 1
+    |Cell in column 2, row 1
+
+    |Cell in column 1, row 2
+    |Cell in column 2, row 2
+    |===
+< -----------------------------------------------------------------------------
+NOTE:
+    1) The * in the cols attribute is the repeat operator. It means repeat the
+    column specification across the remaining columns. In this case, we are
+    repeating the default formatting across 2 columns. When the cells in the
+    header are not defined on a single line, you must use the cols attribute
+    to set the number of columns in the table and the %header option (or
+    options=header attribute) to promote the first row to the table header.
+
+3. Example (Table with three columns, a header row, and two rows of content):
+------------------------------------------------------------------------------ >
+    .Applications                         #<1>
+    [cols="1,1,2"]
+    |===
+    |Name |Category |Description
+
+    |Firefox
+    |Browser
+    |Mozilla Firefox is an open source web browser.
+    It's designed for standards compliance,
+    performance, portability.
+
+    |Arquillian
+    |Testing
+    |An innovative and highly extensible testing platform.
+    Empowers developers to easily create real, automated tests.
+    |===
+< -----------------------------------------------------------------------------
+NOTE:
+    1) In this example, the cols attribute has two functions. It specifies
+    that this table has three columns, and it sets their relative widths.
+
+4. Example (Table with column containing AsciiDoc content):
+------------------------------------------------------------------------------ >
+    [cols="2,2,5a"]
+    |===
+    |Firefox
+    |Browser
+    |Mozilla Firefox is an open source web browser.
+
+    It's designed for:
+
+    * standards compliance
+    * performance
+    * portability
+
+    https://getfirefox.com[Get Firefox]!
+    |===
+< -----------------------------------------------------------------------------
+
+5. Example (Table from CSV data using shorthand):
+------------------------------------------------------------------------------ >
+    ,===
+    Artist,Track,Genre
+
+    Baauer,Harlem Shake,Hip Hop
+    ,===
+< -----------------------------------------------------------------------------
+
+6. Example (Table from CSV data):
+------------------------------------------------------------------------------ >
+    [%header,format=csv]
+    |===
+    Artist,Track,Genre
+    Baauer,Harlem Shake,Hip Hop
+    The Lumineers,Ho Hey,Folk Rock
+    |===
+< -----------------------------------------------------------------------------
+
+7. Example (Table from CSV data in file):
+------------------------------------------------------------------------------ >
+    :===
+    Artist:Track:Genre
+
+    Robyn:Indestructable:Dance
+    :===
+< -----------------------------------------------------------------------------
+
+8. Example (Table from DSV data using shorthand):
+------------------------------------------------------------------------------ >
+    :===
+    Artist:Track:Genre
+
+    Robyn:Indestructable:Dance
+    :===
+< -----------------------------------------------------------------------------
+
+9. Example (Table with formatted, aligned and merged cells):
+------------------------------------------------------------------------------ >
+    [cols="e,m,^,>s",width="25%"]
+    |===
+    |1 >s|2 |3 |4
+    ^|5 2.2+^.^|6 .3+<.>m|7
+    ^|8
+    |9 2+>|10
+    |===
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+20. IDs, roles, and options                            *adoc_q_IdsRolesOptions*
+
+1. Example (Shorthand method for assigning block ID (anchor) and role):
+------------------------------------------------------------------------------ >
+    [#goals.incremental]
+    * Goal 1
+    * Goal 2
+< -----------------------------------------------------------------------------
+NOTE (TIP):
+    * To specify multiple roles using the shorthand syntax, delimit them by
+      dots.
+    * The order of id and role values in the shorthand syntax does not matter.
+
+2. Example (Formal method for assigning block ID (anchor) and role):
+------------------------------------------------------------------------------ >
+    [id="goals",role="incremental"]
+    * Goal 1
+    * Goal 2
+< -----------------------------------------------------------------------------
+
+3. Example (Explicit section ID (anchor)):
+------------------------------------------------------------------------------ >
+    [#null-values]
+    == Primitive types and null values
+< -----------------------------------------------------------------------------
+
+4. Example (Assign ID (anchor) and role to inline formatted text):
+------------------------------------------------------------------------------ >
+    [#id-name.role-name]`monospace text`
+
+    [#free-world.goals]*free the world*
+< -----------------------------------------------------------------------------
+
+5. Example (Shorthand method for assigning block options):
+------------------------------------------------------------------------------ >
+    [%header%footer%autowidth]
+    |===
+    |Header A |Header B
+    |Footer A |Footer B
+    |===
+< -----------------------------------------------------------------------------
+
+6. Example (Formal method for assigning block options):
+------------------------------------------------------------------------------ >
+    [options="header,footer,autowidth"]
+    |===
+    |Header A |Header B
+    |Footer A |Footer B
+    |===
+
+    // options can be shorted to opts
+    [opts="header,footer,autowidth"]
+    |===
+    |Header A |Header B
+    |Footer A |Footer B
+    |===
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+21. Comments                                                 *adoc_q_comments*
+
+1. Example (Line and block comments):
+------------------------------------------------------------------------------ >
+    // A single-line comment
+
+    ////
+    A multi-line comment.
+
+    Notice it's a delimited block.
+    ////
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+22. Breaks                                                     *adoc_q_breaks*
+
+1. Example (Thematic break (aka horizontal rule)):
+------------------------------------------------------------------------------ >
+    before
+
+    '''
+
+    after
+< -----------------------------------------------------------------------------
+
+2. Example (Page break):
+------------------------------------------------------------------------------ >
+    <<<
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+23. Attributes and substitutions                           *adoc_q_attributes*
+
+1. Example (Attribute declaration and usage):
+------------------------------------------------------------------------------ >
+    :url-home: https://asciidoctor.org
+    :link-docs: https://asciidoctor.org/docs[documentation]
+    :summary: AsciiDoc is a mature, plain-text document format for \
+	   writing notes, articles, documentation, books, and more. \
+	   It's also a text processor & toolchain for translating \
+	   documents into various output formats (i.e., backends), \
+	   including HTML, DocBook, PDF and ePub.
+    :checkedbox: pass:normal[{startsb}&#10004;{endsb}]
+
+    Check out {url-home}[Asciidoctor]!
+
+    {summary}
+
+    Be sure to read the {link-docs} too!
+
+    {checkedbox} That's done!
+< -----------------------------------------------------------------------------
+NOTE:
+    To learn more about the available attributes and substitution groups see:
+	* "Document Attributes Reference"#<1>
+	* "Character Replacement Attributes Reference"#<2>
+	* "Substitution Groups"#<3>
+	----------------------------------------------------------------------
+	1) https://docs.asciidoctor.org/asciidoc/latest/attributes/document-attributes-ref/
+	2) https://docs.asciidoctor.org/asciidoc/latest/attributes/character-replacement-ref/
+	3) https://docs.asciidoctor.org/asciidoc/latest/subs/apply-subs-to-blocks/#subs-groups
+	----------------------------------------------------------------------
+
+2. Example (Counter attributes):
+------------------------------------------------------------------------------ >
+    .Parts{counter2:index:0}
+    |===
+    |Part Id |Description
+
+    |PX-{counter:index}
+    |Description of PX-{index}
+
+    |PX-{counter:index}
+    |Description of PX-{index}
+    |===
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+24. Text replacements                                *adoc_q_textReplacements*
+
+Textual symbol replacements
+
+| Name              | Syntax    | Unicode Repl.   | Rendered   | Notes~
+------------------------------------------------------------------------------
+| Copyright         | (C)       | &#169;          | ©          |
+| Registered        | (R)       | &#174;          | ®          |
+| Trademark         | (TM)      | &#8482;         | ™          |
+| Em dash           | --        | &#8212;         | —          | #<1>
+| Ellipses          | ...       | &#8230;         | …          |
+| Single right arrow| ->        | &#8594;         | →          |
+| Double right arrow| =>        | &#8658;         | ⇒          |
+| Single left arrow | <-        | &#8592;         | ←          |
+| Double left arrow | <=        | &#8596;         | ⇐          |
+| Typographic       | Sam's     | Sam&#8217;s     | Sam’s      | #<2>
+  apostrophe
+------------------------------------------------------------------------------
+NOTE (REMARKS):
+    1) Only replaced if between two word characters, between a word character
+       and a line boundary, or flanked by spaces. When flanked by space
+       characters (e.g., a -- b), the normal spaces are replaced by thin spaces
+       (&#8201;).
+    2) The typewriter apostrophe is replaced with the typographic (aka curly
+       or smart) apostrophe.
+
+NOTE:
+    Any named, numeric or hexadecimal "XML character reference"#<1> is
+    supported.
+    --------------------------------------------------------------------------
+    1) https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
+    ------------------------------------------------------------------------------
+
+==============================================================================
+25. Escaping substitutions                     *adoc_q_escapingSubstituations*
+
+1. Example (Backslash):
+------------------------------------------------------------------------------ >
+    In /items/\{id}, the id attribute isn't replaced.
+    The curly braces around it are preserved.
+
+    \*Stars* isn't displayed as bold text.
+    The asterisks around it are preserved.
+
+    \&sect; appears as an entity reference.
+    It's not converted into the section symbol (&sect;).
+
+    \=> The backslash prevents the equals sign followed by a greater
+    than sign from combining to form a double arrow character (=>).
+
+    \[[Word]] is not interpreted as an anchor.
+    The double brackets around it are preserved.
+
+    [\[[Word]]] is not interpreted as a bibliography anchor.
+    The triple brackets around it are preserved.
+
+    The URL \https://example.org isn't converted into an active link.
+< -----------------------------------------------------------------------------
+
+2. Example (Single and double plus inline passthroughs):
+------------------------------------------------------------------------------ >
+    A word or phrase between single pluses, such as +/user/{id}+,
+    is not substituted.
+    However, the special characters like +<+ and +>+ are still
+    escaped in the output.
+
+    An attribute reference within a word, such as dev++{conf}++,
+    is not replaced.
+
+    A plus passthrough will escape standalone formatting marks,
+    like +``+, or formatting marks within a word, like all-natural++*++.
+< -----------------------------------------------------------------------------
+
+3. Example (Triple plus inline passthrough and inline pass macro):
+------------------------------------------------------------------------------ >
+    +++<u>underline me</u>+++ is underlined.
+
+    pass:[<u>underline me</u>] is also underlined.
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+26. Bibliography                                         *adoc_q_bibliography*
+
+1. Example (Bibliography with inbound references):
+------------------------------------------------------------------------------ >
+    _The Pragmatic Programmer_ <<pp>> should be required reading for all \
+    developers.
+    To learn all about design patterns, refer to the book by the \
+    "`Gang of Four`" <<gof>>.
+
+    [bibliography]
+    == References
+
+    * [[[pp]]] Andy Hunt & Dave Thomas. The Pragmatic Programmer:
+    From Journeyman to Master. Addison-Wesley. 1999.
+    * [[[gof,gang]]] Erich Gamma, Richard Helm, Ralph Johnson & John \
+    Vlissides.
+    Design Patterns: Elements of Reusable Object-Oriented Software. \
+    Addison-Wesley. 1994.
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+27. Footnotes                                               *adoc_q_footnotes*
+
+1. Example (Normal and reusable footnotes):
+------------------------------------------------------------------------------ >
+    A statement.footnote:[Clarification about this statement.]
+
+    A bold statement!footnote:disclaimer[Opinions are my own.]
+
+    Another bold statement.footnote:disclaimer[]
+< -----------------------------------------------------------------------------
+
+
+==============================================================================
+28. Markdown compatibility                       *adoc_q_markdownCompatiblity*
+
+Markdown compatible syntax is an optional feature of the AsciiDoc language and
+is currently only available when using Asciidoctor.
+
+1. Example (Markdown-style headings):
+------------------------------------------------------------------------------ >
+    # Document Title (Level 0)
+    ## Section Level 1
+    ### Section Level 2
+    #### Section Level 3
+    ##### Section Level 4
+    ###### Section Level 5
+< -----------------------------------------------------------------------------
+
+1. Example (Fenced code block with syntax highlighting):
+------------------------------------------------------------------------------ >
+    ```ruby
+    require 'sinatra'
+
+    get '/hi' do
+      "Hello World!"
+    end
+    ```
+< -----------------------------------------------------------------------------
+
+2. Example (Markdown-style blockquote):
+------------------------------------------------------------------------------ >
+    > I hold it that a little rebellion now and then is a good thing,
+    > and as necessary in the political world as storms in the physical.
+    > -- Thomas Jefferson, Papers of Thomas Jefferson: Volume 11
+< -----------------------------------------------------------------------------
+
+3. Example (Markdown-style blockquote with block content):
+------------------------------------------------------------------------------ >
+    > > What's new?
+    >
+    > I've got Markdown in my AsciiDoc!
+    >
+    > > Like what?
+    >
+    > * Blockquotes
+    > * Headings
+    > * Fenced code blocks
+    >
+    > > Is there more?
+    >
+    > Yep. AsciiDoc and Markdown share a lot of common syntax already.
+< -----------------------------------------------------------------------------
+
+
+3. Example (Markdown-style thematic breaks):
+------------------------------------------------------------------------------ >
+    ---
+    - - -
+    ***
+    * * *
+< -----------------------------------------------------------------------------
 
 vim:tw=78:ts=8:noet:ft=help:norl:
