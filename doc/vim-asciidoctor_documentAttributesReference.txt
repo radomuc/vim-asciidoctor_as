@@ -1,0 +1,2121 @@
+*vim-asciidoctor_documnetAttriubtesReference.txt*  Document Attributes Reference
+
+Vim-Version : 8.2
+Created     : 2023-04-16
+Last Change : 2023-04-22
+Author      : Radomir Ochtyra <radeko@gmx.de>
+
+------------------------------------------------------------------------------
+==============================================================================
+
+                 Asciidoctor - Document Attributes Reference
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+             Designed to write fast and quick adoc-documentations
+
+==============================================================================
+CONTENTS                                                   *adoc_dar_contents*
+
+ 1. Intrinsic attributes ............................. |adoc_dar_intrinsic|
+ 2. Compliance attributes ............................ |adoc_dar_compliance|
+ 3. Localization and numbering attributes ............ |adoc_dar_localization|
+ 4. Document metadata attributes ..................... |adoc_dar_metadata|
+ 5. Section title and table of contents attributes ... |adoc_dar_title|
+ 6. General content and formatting attributes ........ |adoc_dar_content|
+ 7. Image and icon attributes ........................ |adoc_dar_image|
+ 8. Source highlighting and formatting attributes .... |adoc_dar_source|
+ 9. HTML styling attributes .......................... |adoc_dar_html|
+10. Manpage attributes ............................... |adoc_dar_manpage|
+11. Security attributes .............................. |adoc_dar_security|
+12. Index ............................................ |adoc_dar_index|
+
+
+==============================================================================
+1. Intrinsic attributes                                  *adoc_dar_intrinsic*
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_backend*
+'backend'
+
+    Alowed Value    : any //ex. html5
+    Modifiable      : Yes
+    API/CLI Only    : No
+
+    The backend used to select and activate the converter that creates the
+    output file. Usually named according to the output format (e.g., html5)
+
+------------------------------------------------------------------------------
+                                                  *adoc_dar_backend-<backend>*
+'backend-<backend>'
+
+    Allowed Value   : empty
+    Modifiable      : Yes
+    API/CLI Only    : No
+
+    A convenience attribute for checking which backend is selected. <backend>
+    is the value of the backend attribute (e.g., backend-html5). Only one such
+    attribute is set at time.
+
+------------------------------------------------------------------------------
+                                                        *adoc_dar_basebackend*
+'basebackend'
+
+    Allowed Value   : any //ex. html
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    The generic backend on which the backend is based. Typically derived from
+    the backend value minus trailing numbers (e.g., the basebackend for
+    docbook5 is docbook). May also indicate the internal backend employed by
+    the converter (e.g., the basebackend for pdf is html).
+
+------------------------------------------------------------------------------
+                                          *adoc_dar_basebackend-<basebackend>*
+'basebackend-<basebackend>'
+
+    Allowed Value   : empty
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    A convenience attribute for checking which basebackend is active.
+    <basebackend> is the value of the basebackend attribute (e.g.,
+    basebackend-html). Only one such attribute is set at time.
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_docdate*
+'docdate'
+
+    Allowed Value   : date (ISO) //ex. 2019-01-04
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    Last modified date of the source document`(1)``(2)`.
+
+------------------------------------------------------------------------------
+                                                        *adoc_dar_docdatetime*
+'docdatetime'
+
+    Allowed Value   : datetime (ISO) //ex. 2019-01-04 19:26:06 UTC
+    Modifiable      : Yes
+    API/CLI Only    : No
+
+    Last modified date and time of the source document`(1)``(2)`.
+
+------------------------------------------------------------------------------
+                                                             *adoc_dar_docdir*
+'docdir'
+
+    Allowed Value   : directory path //ex. /home/user/docs
+    Modifiable      : If input is a string
+    API/CLI Only    : Yes
+
+    Full path of the directory that contains the source document. Empty if the
+    safe mode is SERVER or SECURE (to conceal the file’s location).
+
+                                                            *adoc_dar_docfile*
+'docfile'
+
+    Allowed Value   : file path //ex. /home/user/docs/user-guide.adoc
+    Modifiable      : If input is a string
+    API/CLI Only    : Yes
+
+    Full path of the source document. Truncated to the basename if the safe mode
+    is SERVER or SECURE (to conceal the file’s location).
+
+------------------------------------------------------------------------------
+                                                               *docfilesuffix*
+'docfilesuffix'
+
+    Allowed Value   : file extension //ex. .adoc
+    Modifiable      : If input is a string
+    API/CLI Only    : Yes
+
+    File extension of the source document, including the leading period.
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_docname*
+'docname'
+
+    Allowed Value   : file stem basename //ex. userguide
+    Modifiable      : If input is a string
+    API/CLI Only    : Yes
+
+    Root name of the source document (no leading path or file extension).
+
+------------------------------------------------------------------------------
+                                                                     *doctime*
+'doctime'
+
+    Allowed Value   : time (ISO) //ex. 19:26:06 UTC
+    Modifiable      : Yes
+    API/CLI Only    : No
+
+    Last modified time of the source document`(1)``(2)`
+
+------------------------------------------------------------------------------
+                                                           *doctype-<doctype>*
+'doctype-<doctype>'
+
+    Allowed Value   : any (ex. html)
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    A convenience attribute for checking the doctype of the document.
+    <doctype> is the value of the doctype attribute (e.g., doctype-book). Only
+    one such attribute is set at time.
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_docyear*
+'docyear'
+
+    Allowed Value   : integer
+    Modifiable      : Yes
+    API/CLI Only    : No
+
+    Year that the document was last modified`(1)``(2)`
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_embedded*
+'embedded'
+
+    Allowed Value   : empty
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    Only set if content is being converted to an embedded document (i.e., body
+    of document only).
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_filetype*
+'filetype'
+
+    Allowed Value   : any //ex. html
+    Modifiable      : If input is a string
+    API/CLI Only    : Yes
+
+    File extension of the output file name (without leading period).
+
+------------------------------------------------------------------------------
+                                                *adoc_dar_filetype-<filetype>*
+'filetype-<filetype>'
+
+    Allowed Value   : empty
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+A convenience attribute for checking the filetype of the output. <filetype> is
+the value of the filetype attribute (e.g., filetype-html). Only one such
+attribute is set at time.
+
+------------------------------------------------------------------------------
+                                                         *adoc_dar_htmlsyntax*
+'htmlsyntax'
+
+    Allowed Value   : html, xml
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+Syntax used when generating the HTML output. Controlled by and derived from
+the backend name (html=html or xhtml=html).
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_localdate*
+'localdate'
+
+    Allowed Value   : date (ISO)
+    Modifiable      : Yes
+    API/CLI Only    : No
+
+    Date when the document was converted`(2)`
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_localdatetime*
+'localdatetime'
+
+    Allowed Value   : datetime (ISO)
+    Modifiable      : Yes
+    API/CLI Only    : No
+
+    Date and time when the document was converted`(2)`
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_localtime*
+'localtime'
+
+    Allowed Value   : time (ISO)
+    Modifiable      : Yes
+    API/CLI Only    : No
+
+Time when the document was converted`(2)`.
+
+------------------------------------------------------------------------------
+                                                             *adoc_dar_outdir*
+'outdir'
+
+    Allowed Value   : directory path //ex. /home/user/docs/dist
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    Full path of the output directory. (Cannot be referenced in the content.
+    Only available to the API once the document is converted).
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_outfile*
+'outfile'
+
+    Allowed Value   : file path //ex. /home/user/docs/dist/guide.html
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    Full path of the output file. (Cannot be referenced in the content. Only
+    available to the API once the document is converted).
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_outfilesuffix*
+'outfilesuffix'
+
+    Allowed Value   : file extension //ex. .html
+    Modifiable      : Yes
+    API/CLI Only    : No
+
+    File extension of the output file (starting with a period) as determined
+    by the backend (.html for html, .xml for docbook, etc.).
+
+------------------------------------------------------------------------------
+                                                    *adoc_dar_safe-mode-level*
+'safe-mode-level'
+
+    Allowed Value   : 0, 1, 10, 20
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    Numeric value of the safe mode setting. (0=UNSAFE, 1=SAFE, 10=SERVER,
+    20=SECURE).
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_safe-mode-name*
+'safe-mode-name'
+
+    Allowed Value   : UNSAFE, SAFE, SERVER, SECURE
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    Textual value of the safe mode setting.
+
+------------------------------------------------------------------------------
+                                                   *adoc_dar_safe-mode-unsafe*
+'safe-mode-unsafe'
+
+    Allowed Value   : empty
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    Set if the safe mode is UNSAFE.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_safe-mode-safe*
+'safe-mode-safe'
+
+    Allowed Value   : empty
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    Set if the safe mode is SAFE.
+
+------------------------------------------------------------------------------
+                                                   *adoc_dar_safe-mode-server*
+'safe-mode-server'
+
+    Allowed Value   : empty
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    Set if the safe mode is SERVER.
+
+------------------------------------------------------------------------------
+                                                   *adoc_dar_safe-mode-secure*
+'safe-mode-secure'
+
+    Allowed Value   : empty
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    Set if the safe mode is SECURE.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_user-home*
+'user-home'
+
+    Allowed Value   : directory path //ex. /home/user
+    Modifiable      : No
+    API/CLI Only    : n/a
+
+    Full path of the home directory for the current user. Masked as . if the
+    safe mode is SERVER or SECURE.
+
+------------------------------------------------------------------------------
+1) Only reflects the last modified time of the source document file. It
+   does not consider the last modified time of files which are included.
+2) If the SOURCE_DATE_EPOCH environment variable is set, the value
+   assigned to this attribute is built from a UTC date object that
+   corresponds to the timestamp (as an integer) stored in that environment
+   variable. This override offers one way to make the conversion
+   reproducible. See the source date epoch specification for more
+   information about the SOURCE_DATE_EPOCH environment variable.
+   Otherwise, the date is expressed in the local time zone, which is
+   reported as a time zone offset (e.g., -0600) or UTC if the time zone
+   offset is 0). To force the use of UTC, set the TZ=UTC environment
+   variable when invoking Asciidoctor.
+------------------------------------------------------------------------------
+
+
+==============================================================================
+Compliance attributes                                    *adoc_dar_compliance*
+
+------------------------------------------------------------------------------
+                                                  *adoc_dar_attribute-missing*
+'attribute-missing'
+
+    Allowed Value   : drop, drop-line, skip, warn
+    Set By Default  : Yes
+    Header Only     : No
+
+    Controls how "missing attribute references"`(3)` are handled.
+
+------------------------------------------------------------------------------
+                                                *adoc_dar_attribute-undefined*
+'attribute-undefined'
+
+    Allowed Value   : drop, drop-line
+    Set By Default  : Yes
+    Header Only     : No
+
+    Controls how attribute unassignments are handled.
+
+------------------------------------------------------------------------------
+                                                        *adoc_dar_compat-mode*
+'compat-mode'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    Header Only     : No
+
+    Controls when the legacy parsing mode is used to parse the document.
+
+------------------------------------------------------------------------------
+                                                       *adoc_dar_experimental*
+'experimental'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    Header Only     : Yes
+
+    Enables "Button and Menu UI Macros"`(5)` and the "Keyboard Macro"`(6)`.
+
+------------------------------------------------------------------------------
+                                                       *adoc_dar_reproducible*
+'reproducible'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    Header Only     : Yes
+
+    Prevents last-updated date from being added to HTML footer or DocBook info
+    element. Useful for storing the output in a source code control system as
+    it prevents spurious changes every time you convert the document.
+    Alternately, you can use the SOURCE_DATE_EPOCH environment variable, which
+    sets the epoch of all source documents and the local datetime to a fixed
+    value.
+
+------------------------------------------------------------------------------
+                                                  *adoc_dar_skip-front-matter*
+'skip-front-matter'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    Header Only     : Yes
+
+    Consume YAML-style frontmatter at top of document and store it in
+    front-matter attribute.
+
+------------------------------------------------------------------------------
+3) https://docs.asciidoctor.org/asciidoc/latest/attributes/unresolved-references/#missingo
+4) https://docs.asciidoctor.org/asciidoc/latest/attributes/unresolved-references/#undefined
+5) https://docs.asciidoctor.org/asciidoc/latest/macros/ui-macros/
+6) https://docs.asciidoctor.org/asciidoc/latest/macros/keyboard-macro/
+
+
+==============================================================================
+Localization and numbering attributes                  *adoc_dar_localization*
+
+------------------------------------------------------------------------------
+                                                   *adoc_dar_appendix-caption*
+'appendix-caption'
+
+    Allowed Value   : any //.ex. Appendix
+    Set By Default  : Yes
+    Header Only     : No
+
+    Label added before an "appendix title"`(7)`.
+
+------------------------------------------------------------------------------
+                                                    *adoc_dar_appendix-number*
+'appendix-number'
+
+    Allowed Value   : any //.ex. cw(@)
+    Set By Default  : No
+    Header Only     : No
+
+    Sets the seed value for the appendix number sequence`(50)`.
+
+------------------------------------------------------------------------------
+                                                    *adoc_dar_appendix-refsig*
+'appendix-refsig'
+
+    Allowed Value   : any //.ex. Appendix
+    Set By Default  : Yes
+    Header Only     : No
+
+    Signifier added to Appendix title cross references.
+
+------------------------------------------------------------------------------
+                                                    *adoc_dar_caution-caption*
+'caution-caption'
+
+    Allowed Value   : any //.ex. Caution
+    Set By Default  : Yes
+    Header Only     : No
+
+    Text used to label CAUTION admonitions when icons aren’t enabled.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_chapter-number*
+'chapter-number'
+
+    Allowed Value   : number //.ex. (0)
+    Set By Default  : No
+    Header Only     : No
+
+    Sets the seed value for the chapter number sequence`(7)`. Book doctype only.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_chapter-refsig*
+'chapter-refsig'
+
+    Allowed Value   : any //.ex. Chapter
+    Set By Default  : Yes
+    Header Only     : No
+
+    Signifier added to Chapter titles in cross references. Book doctype only.
+
+------------------------------------------------------------------------------
+                                                  *adoc_dar_chapter-signifier*
+'chapter-signifier'
+
+    Allowed Value   : any
+    Set By Default  : No
+    Header Only     : No
+
+    "Label added to level 1 section titles (chapters)`(9)`. Book doctype only.
+
+------------------------------------------------------------------------------
+                                                    *adoc_dar_example-caption*
+'example-caption'
+
+    Allowed Value   : any //.ex. Example
+    Set By Default  : Yes
+    Header Only     : No
+
+    Text used to label example blocks.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_example-number*
+'example-number'
+
+    Allowed Value   : number //.ex. (0)
+    Set By Default  : No
+    Header Only     : No
+
+    Sets the seed value for the example number sequence`(50)`.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_figure-caption*
+'figure-caption'
+
+    Allowed Value   : any //.ex. Figure
+    Set By Default  : Yes
+    Header Only     : No
+
+    Text used to label images and figures.
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_figure-number*
+'figure-number'
+
+    Allowed Value   : number //.ex. (0)
+    Set By Default  : No
+    Header Only     : No
+
+    Sets the seed value for the figure number sequence`(50)`.
+
+------------------------------------------------------------------------------
+                                                    *adoc_dar_footnote-number*
+'footnote-number'
+
+    Allowed Value   : any //.ex. Appendix
+    Set By Default  : No
+    Header Only     : No
+
+    Sets the seed value for the footnote number sequence`(50)`.
+
+------------------------------------------------------------------------------
+                                                  *adoc_dar_important-caption*
+'important-caption'
+
+    Allowed Value   : any //ex. Important
+    Set By Default  : Yes
+    Header Only     : No
+
+    Text used to label IMPORTANT admonitions when icons are not enabled.
+
+------------------------------------------------------------------------------
+                                                               *adoc_dar_lang*
+'lang'
+
+    Allowed Value   : BCP 47 language tag //ex. (en)
+    Set By Default  : No
+    Header Only     : Yes
+
+    Language tag specified on document element of the output document. Refer
+    to "the lang and xml:lang attributes section"`(10)` of the HTML specification to
+    learn about the acceptable values for this attribute.
+
+------------------------------------------------------------------------------
+                                                  *adoc_dar_last-update-label*
+'last-update-label'
+
+    Allowed Value   : any //ex. Last updated
+    Set By Default  : Yes
+    Header Only     : Yes
+
+    Text used for “Last updated” label in footer.
+
+------------------------------------------------------------------------------
+                                                    *adoc_dar_listing-caption*
+'listing-caption'
+
+    Allowed Value   : any
+    Set By Default  : No
+    Header Only     : No
+
+    Text used to label listing blocks.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_listing-number*
+'listing-number'
+
+    Allowed Value   : number //ex. (0)
+    Set By Default  : No
+    Header Only     : No
+
+    Sets the seed value for the listing number sequence`(50)`.
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_manname-title*
+'manname-title'
+
+    Allowed Value   : any //ex. Name
+    Set By Default  : No
+    Header Only     : Yes
+
+    Label for program name section in the man page.
+
+------------------------------------------------------------------------------
+                                                             *adoc_dar_nolang*
+'nolang'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    Header Only     : Yes
+
+    Prevents lang attribute from being added to root element of the output
+    document.
+
+------------------------------------------------------------------------------
+                                                       *adoc_dar_note-caption*
+'note-caption'
+
+    Allowed Value   : any //ex. Note
+    Set By Default  : Yes
+    Header Only     : No
+
+    Text used to label NOTE admonitions when icons aren’t enabled.
+
+------------------------------------------------------------------------------
+                                                        *adoc_dar_part-refsig*
+'part-refsig'
+
+    Allowed Value   : any //ex. Part
+    Set By Default  : Yes
+    Header Only     : No
+
+    Signifier added to Part titles in cross references. Book doctype only.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_part-signifier*
+'part-signifier'
+
+    Allowed Value   : any
+    Set By Default  : No
+    Header Only     : No
+
+    "Label added to level 0 section titles (parts)"`(8)`. Book doctype only.
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_preface-title*
+'preface-title'
+
+    Allowed Value   : any
+    Set By Default  : No
+    Header Only     : No
+
+    Title text for an anonymous preface when doctype is book.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_section-refsig*
+'section-refsig'
+
+    Allowed Value   : any //ex. Section
+    Set By Default  : Yes
+    Header Only     : No
+
+    Signifier added to title of numbered sections in cross reference text.
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_table-caption*
+'table-caption'
+
+    Allowed Value   : any //ex. Table
+    Set By Default  : Yes
+    Header Only     : No
+
+    Text of label prefixed to table titles.
+
+------------------------------------------------------------------------------
+                                                       *adoc_dar_table-number*
+'table-number'
+
+    Allowed Value   : number //ex. (0)
+    Set By Default  : No
+    Header Only     : No
+
+    Sets the seed value for the table number sequence`(50)`.
+
+------------------------------------------------------------------------------
+                                                        *adoc_dar_tip-caption*
+'tip-caption'
+
+    Allowed Value   : any //ex. Tip
+    Set By Default  : Yes
+    Header Only     : No
+
+    Text used to label TIP admonitions when icons aren’t enabled.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_toc-title*
+'toc-title'
+
+    Allowed Value   : any //ex. Table of Contents
+    Set By Default  : Yes
+    Header Only     : Yes
+
+    "Title for table of contents"`(11)`.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_untitled-label*
+'untitled-label'
+
+    Allowed Value   : any //ex. Untitled
+    Set By Default  : Yes
+    Header Only     : Yes
+
+    Default document title if document doesn’t have a document title.
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_version-label*
+'version-label'
+
+    Allowed Value   : any //ex. Version
+    Set By Default  : Yes
+    Header Only     : Yes
+
+    See "Version Label Attribute"`(12)`.
+
+------------------------------------------------------------------------------
+                                                    *adoc_dar_warning-caption*
+'warning-caption'
+
+    Allowed Value   : any //ex. Warning
+    Set By Default  : Yes
+    Header Only     : No
+
+    Text used to label WARNING admonitions when icons aren’t enabled.
+
+------------------------------------------------------------------------------
+7) https://docs.asciidoctor.org/asciidoc/latest/sections/appendix/
+9) https://docs.asciidoctor.org/asciidoc/latest/sections/chapters/
+10) https://html.spec.whatwg.org/#the-lang-and-xml:lang-attributes
+11) https://docs.asciidoctor.org/asciidoc/latest/toc/title/
+12) https://docs.asciidoctor.org/asciidoc/latest/document/version-label/
+
+
+==============================================================================
+Document medadata attributes                               *adoc_dar_metadata*
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_app-name*
+'app-name'
+
+    Allowed Value   : any
+    Set By Default  : No
+    Header Only     : Yes
+
+    Adds application-name meta element for mobile devices inside HTML document
+    head.
+
+------------------------------------------------------------------------------
+                                                             *adoc_dar_author*
+'author'
+
+    Allowed Value   : any
+    Set By Default  : Extracted from author info line
+    Header Only     : Yes
+
+    Can be set automatically via the author info line or explicitly. See
+    "Author Information"`(13)`.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_authorinitials*
+'authorinitials'
+
+    Allowed Value   : any
+    Set By Default  : Extracted from author attribute
+    Header Only     : Yes
+
+    Derived from the author attribute by default. See "Author
+    Information"`(13)`.
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_authors*
+'authors'
+
+    Allowed Value   : any
+    Set By Default  : Extracting from author info line
+    Header Only     : Yes
+
+    Can be set automatically via the author info line or explicitly as a
+    comma-separated value list. See "Author Information."`(13)`
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_copyright*
+'copyright'
+
+    Allowed Value   : any
+    Set By Default  : No
+    Header Only     : Yes
+
+    Adds copyright meta element in HTML document head.
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_doctitle*
+'doctitle'
+
+    Allowed Value   : any
+    Set By Default  : Yes, if document has a doctitle
+    Header Only     : Yes
+
+    See "doctitle attribute"`(14)`.
+
+------------------------------------------------------------------------------
+                                                        *adoc_dar_description*
+'description'
+
+    Allowed Value   : any
+    Set By Default  : No
+    Header Only     : Yes
+
+    Adds "description"`(15)` meta element in HTML document head.
+
+------------------------------------------------------------------------------
+                                                              *adoc_dar_email*
+'email'
+
+    Allowed Value   : any
+    Set By Default  : Extracted from author info line
+    Header Only     : Yes
+
+    Can be any inline macro, such as a URL. See "Author Information"`(13)`.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_firstname*
+'firstname'
+
+    Allowed Value   : any
+    Set By Default  : Extracted from author info line
+    Header Only     : Yes
+
+    See "Author Information"`(13)`.
+
+------------------------------------------------------------------------------
+                                                       *adoc_dar_front-matter*
+'front-matter'
+
+    Allowed Value   : any
+    Set By Default  : Yes, if front matter is captured
+    Header Only     : n/a
+
+    If skip-front-matter is set via the API or CLI, any YAML-style frontmatter
+    skimmed from the top of the document is stored in this attribute.
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_keywords*
+'keywords'
+
+    Allowed Value   : any
+    Set By Default  : No
+    Header Only     : Yes
+
+    Adds "keywords"`(16)` meta element in HTML document head.
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_lastname*
+'lastname'
+
+    Allowed Value   : any
+    Set By Default  : Extracted from author info line
+    Header Only     : Yes
+
+    See "Author Information"`(13)`.
+
+------------------------------------------------------------------------------
+                                                         *adoc_dar_middlename*
+'middlename'
+
+    Allowed Value   : any
+    Set By Default  : Extracted from author info line
+    Header Only     : Yes
+
+    See "Author Information"`(13)`.
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_orgname*
+'orgname'
+
+    Allowed Value   : any
+    Set By Default  : No
+    Header Only     : Yes
+
+    Adds <orgname> element value to DocBook info element.
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_revdate*
+'revdate'
+
+    Allowed Value   : any
+    Set By Default  : Extracted from revision info line
+    Header Only     : Yes
+
+    See "Revision Information"`(17)`.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_revremark*
+'revremark'
+
+    Allowed Value   : any
+    Set By Default  : Extracted from revision info line
+    Header Only     : Yes
+
+    See "Revision Information"`(17)`.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_revnumber*
+'revnumber'
+
+    Allowed Value   : any
+    Set By Default  : Extracted from revision info
+    Header Only     : Yes
+
+    See "Revision Information"`(17)`.
+
+------------------------------------------------------------------------------
+                                                              *adoc_dar_title*
+'title'
+
+    Allowed Value   : any
+    Set By Default  : No
+    Header Only     : Yes
+
+    Value of <title> element in HTML <head> or main DocBook <info> of output
+    document. Used as a fallback when the document title is not specified. See
+    "title attribute"`(18)`.
+
+------------------------------------------------------------------------------
+13) https://docs.asciidoctor.org/asciidoc/latest/document/author-information/
+14) https://docs.asciidoctor.org/asciidoc/latest/document/title/#reference-doctitle
+15) https://docs.asciidoctor.org/asciidoc/latest/document/metadata/#description
+16) https://docs.asciidoctor.org/asciidoc/latest/document/metadata/#keywords
+17) https://docs.asciidoctor.org/asciidoc/latest/document/revision-information/
+18) https://docs.asciidoctor.org/asciidoc/latest/document/title/#title-attr
+
+
+==============================================================================
+Section title and table of contents attributes              *adoc_dar_section*
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_idprefix*
+'idprefix'
+
+    Allowed Value   : any
+    Set By Default  : No
+    Header Only     : Yes
+
+    Prefix of auto-generated section IDs. See "Change the ID prefix"`(19)`.
+
+------------------------------------------------------------------------------
+                                                        *adoc_dar_idseperator*
+'idseperator'
+
+    Allowed Value   : valid XML ID start
+    Set By Default  : Yes
+    Header Only     : No
+
+    Word separator used in auto-generated section IDs. See "Change the ID word
+    separator"`(20)`.
+------------------------------------------------------------------------------
+                                                        *adoc_dar_leveloffset*
+'leveloffset'
+
+    Allowed Value   : [+-]0-5
+    Set By Default  : Yes
+    Header Only     : No
+
+    Increases or decreases level of headings below assignment. A leading + or
+    - makes the value relative.
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_partnums*
+'partnums'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    API/CLI Only    : No
+
+    Enables numbering of parts. See "Number book parts"`(21)`. Book doctype only.
+
+------------------------------------------------------------------------------
+                                                        *adoc_dar_sectanchors*
+'sectanchors'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    "Adds anchor in front of section title"`(22)` on mouse cursor hover.
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_sectids*
+'sectids'
+
+    Allowed Value   : empty
+    Set By Default  : Yes
+    API/CLI Only    : No
+
+    Generates and assigns an ID to any section that does not have an ID. See
+    "Disable automatic ID generation"`(23)`.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_sectlinks*
+'sectlinks'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    API/CLI Only    : No
+
+    "Turns section titles into self-referencing links"`(24)`.
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_sectnums*
+'sectnums'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    API/CLI Only    : No
+
+    "Numbers sections"`(25)` to depth specified by sectnumlevels.
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_sectnumlevels*
+'sectnumlevels'
+
+    Allowed Value   : 0-5 //ex. (3)
+    Set By Default  : No
+    API/CLI Only    : No
+
+    "Controls depth of section numbering"`(26)`.
+
+------------------------------------------------------------------------------
+                                                    *adoc_dar_title-separator*
+'title-separator'
+
+    Allowed Value   : any
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Character used to "separate document title and subtitle"`(27)`.
+
+------------------------------------------------------------------------------
+                                                                *adoc_dar_toc*
+'toc'
+
+    Allowed Value   : empty[=auto], auto, left, right, macro, preamble
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Turns on "table of contents"`(28)` and specifies "its location"`(29)`.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_toclevels*
+'toclevels'
+
+    Allowed Value   : 1-5
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    "Maximum section level to display"`(30)`.
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_fragment*
+'fragment'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Informs parser that document is a fragment and that it shouldn’t enforce
+    proper section nesting.
+
+------------------------------------------------------------------------------
+19) https://docs.asciidoctor.org/asciidoc/latest/sections/id-prefix-and-separator/#prefix
+20) https://docs.asciidoctor.org/asciidoc/latest/sections/id-prefix-and-separator/#separator
+21) https://docs.asciidoctor.org/asciidoc/latest/sections/part-numbers-and-signifier/#partnums
+22) https://docs.asciidoctor.org/asciidoc/latest/sections/title-links/#anchor
+23) https://docs.asciidoctor.org/asciidoc/latest/sections/auto-ids/#disable
+24) https://docs.asciidoctor.org/asciidoc/latest/sections/title-links/
+25) https://docs.asciidoctor.org/asciidoc/latest/sections/numbers/
+26) https://docs.asciidoctor.org/asciidoc/latest/sections/numbers/#numlevels
+27) https://docs.asciidoctor.org/asciidoc/latest/document/subtitle/
+28) https://docs.asciidoctor.org/asciidoc/latest/toc/
+29) https://docs.asciidoctor.org/asciidoc/latest/toc/position/
+30) https://docs.asciidoctor.org/asciidoc/latest/toc/levels/
+
+==============================================================================
+General content and formatting attributes                   *adoc_dar_content*
+
+------------------------------------------------------------------------------
+*adoc_dar_asset-uri-schema*
+'asset-uri-schema'
+
+Allowed Value   : empty //ex. http, https
+Set By Default  : No
+API/CLI Only    : Yes
+
+Controls protocol used for assets hosted on a CDN.
+
+------------------------------------------------------------------------------
+*adoc_dar_cache-uri*
+'cache-uri'
+
+Allowed Value   : empty
+Set By Default  : No
+API/CLI Only    : Yes
+
+Cache content read from URIs.
+
+------------------------------------------------------------------------------
+*adoc_dar_data-uri*
+'data-uri'
+
+Allowed Value   : empty
+Set By Default  : Yes
+API/CLI Only    : No
+
+Embed graphics as data-uri elements in HTML elements so file is completely
+self-contained.
+
+------------------------------------------------------------------------------
+*doc_dar_docinfo*
+'docinfo'
+
+Allowed Value   : empty //default: private
+// opt: shared, private, shared-head,
+shared-footer, private-footer
+Set By Default  : No
+API/CLI Only    : Yes
+
+Read input from one or more DocBook info files.
+
+------------------------------------------------------------------------------
+*doc_dar_docinfodir*
+'docinfodir'
+
+Allowed Value   : <directory path>  //ex. /home/user/dir
+Set By Default  : No
+API/CLI Only    : Yes
+
+Location of docinfo files. Defaults to directory of source file if not
+specified.
+
+------------------------------------------------------------------------------
+*adoc_dar_docinfosubs*
+'docinfosubs'
+
+Allowed Value   : <comma-separated substitution names //ex. attributes
+Set By Default  : Yes
+API/CLI Only    : Yes
+
+AsciiDoc substitutions that are applied to docinfo content.
+
+------------------------------------------------------------------------------
+*adoc_dar_doctype*
+'doctype'
+
+Allowed Value   : <item-entry>
+// item-list: article, book, inline, manpage
+Set By Default  : Yes
+API/CLI Only    : Yes
+
+Output document type.
+
+------------------------------------------------------------------------------
+*adoc_dar_eqnums*
+'eqnums'
+
+Allowed Value   : empty //default: AMS
+// opt: AMS, all, none
+Set By Default  : No
+API/CLI Only    : Yes
+
+Controls automatic equation numbering on LaTeX blocks in HTML output
+(MathJax). If the value is AMS, only LaTeX content enclosed in an
+\begin{equation}...\end{equation} container will be numbered. If the value
+is all, then all LaTeX blocks will be numbered. See "equation numbering in
+MathJax"`(31)`.
+
+------------------------------------------------------------------------------
+*adoc_dar_hardbreaks-option*
+'hardbreaks-option'
+
+Allowed Value   : empty
+Set By Default  : No
+API/CLI Only    : No
+
+"Preserve hard line breaks"`(32)`.
+
+------------------------------------------------------------------------------
+*adoc_dar_hide-uri-scheme*
+'hide-uri-scheme'
+
+Allowed Value   : empty
+Set By Default  : No
+API/CLI Only    : No
+
+"Hides URI scheme"`(33)` for raw links.
+
+------------------------------------------------------------------------------
+*adoc_dar_media*
+'media'
+
+Allowed Value   : <item-list> //default: screen
+// item-list: prepress, print, screen
+Set By Default  : No
+API/CLI Only    : Yes
+
+Specifies media type of output and enables behavior specific to that media
+type. PDF converter only.
+
+------------------------------------------------------------------------------
+*adoc_dar_nofooter*
+'nofooter'
+
+Allowed Value   : empty
+Set By Default  : No
+API/CLI Only    : Yes
+
+Turns off footer.
+
+------------------------------------------------------------------------------
+*adoc_dar_nofootnotes*
+'nofootnotes'
+
+Allowed Value   : empty
+Set By Default  : No
+API/CLI Only    : Yes
+
+Turns off footnotes.
+
+------------------------------------------------------------------------------
+*adoc_dar_noheader*
+'noheader'
+
+Allowed Value   : empty
+Set By Default  : No
+API/CLI Only    : Yes
+
+Turns off header.
+
+------------------------------------------------------------------------------
+*adoc_dar_notitle*
+'notitle'
+
+Allowed Value   : empty
+Set By Default  : No
+API/CLI Only    : Yes
+
+"Hides the doctitle in an embedded document"`(34)`. Mutually exclusive with the
+showtitle attribute.
+
+------------------------------------------------------------------------------
+*adoc_dar_outfilesuffix*
+'outfilesuffix'
+
+Allowed Value   : <file-extension> //ex. .html
+Set By Default  : Yes
+API/CLI Only    : Yes
+
+File extension of output file, including dot (.), such as .html.
+
+------------------------------------------------------------------------------
+*adoc_dar_pagewidth*
+'pagewidth'
+
+Allowed Value   : integer //ex. 425
+Set By Default  : No
+API/CLI Only    : Yes
+
+Page width used to calculate the absolute width of tables in the DocBook
+output.
+
+------------------------------------------------------------------------------
+*adoc_dar_relfileprefix*
+'relfileprefix'
+
+Allowed Value   : empty, <path-segment>
+Set By Default  : No
+API/CLI Only    : No
+
+The path prefix to add to relative xrefs.
+
+------------------------------------------------------------------------------
+*adoc_dar_relfilesuffix*
+'relfilesuffix'
+
+Allowed Value   : <file-extension>, <path-segment> //ex. .html
+Set By Default  : Yes
+API/CLI Only    : No
+
+The path suffix (e.g., file extension) to add to relative xrefs. Defaults
+to the value of the outfilesuffix attribute. (Preferred over modifying
+        outfilesuffix).
+
+------------------------------------------------------------------------------
+*adoc_dar_show-link-uri*
+'show-link-uri'
+
+Allowed Value   : empty
+Set By Default  : No
+API/CLI Only    : No
+
+Prints the URI of a link after the link text. PDF converter only.
+
+------------------------------------------------------------------------------
+*adoc_dar_showtitle*
+'showtitle'
+
+Allowed Value   : empty
+Set By Default  : No
+API/CLI Only    : Yes
+
+"Displays the doctitle in an embedded document"`(35)`. Mutually exclusive with the
+notitle attribute.
+
+------------------------------------------------------------------------------
+*adoc_dar_stem*
+'stem'
+
+Allowed Value   : empty //default: asciimath
+// opt: asciimat, latexmath
+Set By Default  : No
+API/CLI Only    : Yes
+
+Enables "mathematics processing and interpreter"`(36)`.
+
+------------------------------------------------------------------------------
+*adoc_dar_table-frame*
+'table-frame'
+
+Allowed Value   : (all), ends, sides, none
+Set By Default  : No
+API/CLI Only    : No
+
+Controls default value for frame attribute on tables.
+
+------------------------------------------------------------------------------
+*adoc_dar_table-grid*
+'table-grid'
+
+Allowed Value   : (all), cols, rows, none
+Set By Default  : No
+API/CLI Only    : No
+
+Controls default value for grid attribute on tables.
+
+------------------------------------------------------------------------------
+*adoc_dar_table-stripes*
+'table-stripes'
+
+Allowed Value   : (none), even, odd, hover, all
+Set By Default  : No
+API/CLI Only    : No
+
+Controls default value for stripes attribute on tables.
+
+------------------------------------------------------------------------------
+*adoc_dar_tabsize*
+'tabsize'
+
+Allowed Value   : integer >= 0
+Set By Default  : No
+API/CLI Only    : No
+
+Converts tabs to spaces in verbatim content blocks (e.g., listing,
+        literal).
+
+------------------------------------------------------------------------------
+*adoc_dar_webfonts*
+'webfonts'
+
+Allowed Value   : empty
+Set By Default  : Yes
+API/CLI Only    : Yes
+
+Control whether webfonts are loaded when using the default stylesheet.
+When set to empty, uses the default font collection from Google Fonts. A
+non-empty value replaces the family query string parameter in the Google
+Fonts URL.
+
+------------------------------------------------------------------------------
+*adoc_dar_xrefstyle*
+'xrefstyle'
+
+Allowed Value   : full, short, basic
+Set By Default  : No
+API/CLI Only    : No
+
+"Formatting style to apply to cross reference text"`(37)`.
+
+------------------------------------------------------------------------------
+31) https://docs.mathjax.org/en/v2.5-latest/tex.html#automatic-equation-numbering
+32) https://docs.asciidoctor.org/asciidoc/latest/blocks/hard-line-breaks/#per-document
+33) https://docs.asciidoctor.org/asciidoc/latest/macros/links/#hide-uri-scheme
+34) https://docs.asciidoctor.org/asciidoc/latest/document/title/#hide-or-show
+35) https://docs.asciidoctor.org/asciidoc/latest/document/title/#hide-or-show
+36) https://docs.asciidoctor.org/asciidoc/latest/stem/
+37) https://docs.asciidoctor.org/asciidoc/latest/macros/xref-text-and-style/#cross-reference-styles
+
+==============================================================================
+Image and icon attributes                                     *adoc_dar_image*
+
+------------------------------------------------------------------------------
+                                                       *adoc_dar_iconfont-cdn*
+'iconfont-cdn'
+
+    Allowed Value   : <url> //default: <CDN URL>
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    If not specified, uses the cdnjs.com service. Overrides CDN used to link
+    to the Font Awesome stylesheet.
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_iconfont-name*
+'iconfont-name'
+
+    Allowed Value   : any //ex. font-awesome
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Overrides the name of the icon font stylesheet.
+
+------------------------------------------------------------------------------
+                                                    *adoc_dar_iconfont-remote*
+'iconfont-remote'
+
+    Allowed Value   : empty
+    Set By Default  : Yes
+    API/CLI Only    : Yes
+
+    Allows use of a CDN for resolving the icon font. Only relevant used when
+    value of icons attribute is font.
+
+------------------------------------------------------------------------------
+                                                              *adoc_dar_icons*
+'icons'
+
+    Allowed Value   : empty //default image
+                      //opt: image, font
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Chooses "images or font icons"`(38)` instead of text for admonitions. Any other
+    value is assumed to be an icontype and sets the value to empty
+    (image-based icons).
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_icondir*
+'iconsdir'
+
+    Allowed Value   : <directory-path|url> //ex. /images/icons
+    Set By Default  : Yes
+    API/CLI Only    : No
+
+    Location of non-font-based image icons. Defaults to the icons folder under
+    imagesdir if imagesdir is specified and iconsdir is not specified.
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_icontype*
+'icontype'
+
+    Allowed Value   : <file-type> //default png
+                      //opt: png, gif, svg, jpg
+    Set By Default  : No
+    API/CLI Only    : No
+
+    File type for image icons. Only relevant when using image-based icons.
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_imagedir*
+'imagedir'
+
+    Allowed Value   : empty
+                      //opt: <directory-path>, <url>
+    Set By Default  : Yes
+    API/CLI Only    : No
+
+    Location of image files.
+
+------------------------------------------------------------------------------
+38) https://docs.asciidoctor.org/asciidoc/latest/macros/icons/#icons-attribute
+
+==============================================================================
+Source highlighting and formatting attributes                *adoc_dar_source*
+
+------------------------------------------------------------------------------
+                                                        *adoc_dar_coderay-css*
+'coderay-css'
+
+    Allowed Value   : <mode-type> //default: class
+                      //opt: class, style
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Controls whether CodeRay uses CSS classes or inline styles.
+
+------------------------------------------------------------------------------
+                                              *adoc_dar_coderay-linenums-mode*
+'coderay-linenums-mode'
+
+    Allowed Value   : <mode-type>   //default: table
+                      //opt: inline, table
+    Set By Default  : No
+    API/CLI Only    : No
+
+    Sets how CodeRay inserts line numbers into source listings.
+
+------------------------------------------------------------------------------
+                                                *adoc_dar_coderay-unavailable*
+'coderay-unavailable'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Instructs processor not to load CodeRay. Also set if processor fails to
+    load CodeRay.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_highlightjsdir*
+'highlightjsdir'
+
+    Allowed Value   : <src-type>    //default: CDN-URL
+                      //opt: <directory-type>, <url>
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Location of the highlight.js source code highlighter library.
+
+------------------------------------------------------------------------------
+                                                  *adoc_dar_highlightjs-theme*
+'highlightjs-theme'
+
+    Allowed Value   : <style-name> //default: github
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Name of theme used by highlight.js.
+
+------------------------------------------------------------------------------
+                                                        *adoc_dar_prettifydir*
+'prettifydir'
+
+    Allowed Value   : <src-type>    //default: CDN-URL
+                      //opt: <directory-path>, <url>
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Location of non-CDN prettify source code highlighter library.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_prettify-theme*
+'prettify-theme'
+
+    Allowed Value   : <prettify-style-name> //default: prettify
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Name of theme used by prettify.
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_prewrap*
+'prewrap'
+
+    Allowed Value   : empty
+    Set By Default  : Yes
+    API/CLI Only    : No
+
+    "Wrap wide code listings"`(39)`.
+
+------------------------------------------------------------------------------
+                                                       *adoc_dar_pygments-css*
+'pygments-css'
+
+    Allowed Value   : <mode-type>   //default: class
+                      //opt: class, style
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Controls whether Pygments uses CSS classes or inline styles.
+
+------------------------------------------------------------------------------
+                                             *adoc_dar_pygments-linenums-mode*
+'pygments-linenums-mode'
+
+    Allowed Value   : <mode-type>   //default: table
+                      //opt: table, inline
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Sets how Pygments inserts line numbers into source listings.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_pygments-style*
+'pygments-style'
+
+    Allowed Value   : <style-name>  //default: default
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Name of style used by Pygments.
+
+------------------------------------------------------------------------------
+                                               *adoc_dar_pygments-unavailable*
+'pygments-unavailable'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Instructs processor not to load Pygments. Also set if processor fails to
+    load Pygments.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_rouge-css*
+'rouge-css'
+
+    Allowed Value   : <mode-type>   //default: class
+                      //opt: class, style
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Controls whether Rouge uses CSS classes or inline styles.
+
+------------------------------------------------------------------------------
+                                                *adoc_dar_rouge-linenums-mode*
+'rouge-linenums-mode'
+
+    Allowed Value   : <mode-type>   //default: table
+                      //opt: inline, table
+    Set By Default  : No
+    API/CLI Only    : No
+
+    Sets how Rouge inserts line numbers into source listings. 'inline' not yet
+    supported by Asciidoctor. See "asciidoctor#3641"`(40)`.
+
+------------------------------------------------------------------------------
+                                                        *adoc_dar_rouge-style*
+'rouge-style'
+
+    Allowed Value   : <style-name>  //default: github
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Name of style used by Rouge.
+
+------------------------------------------------------------------------------
+                                                  *adoc_dar_rouge-unavailable*
+'rouge-unavailable'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Instructs processor not to load Rouge. Also set if processor fails to load
+    Rouge.
+
+------------------------------------------------------------------------------
+                                                 *adoc_dar_source-highlighter*
+'source-highlighter'
+
+    Allowed Value   : <highlighter-type>
+                      //opt: coderay, highlight.js, pygemnts, rouge
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    "Specifies source code highlighter"`(41)`. Any other value is permitted, but must
+    be supported by a custom syntax highlighter adapter.
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_source-indent*
+'source-indent'
+
+    Allowed Value   : <integer>
+    Set By Default  : No
+    API/CLI Only    : No
+
+    Normalize block indentation in source code listings.
+
+------------------------------------------------------------------------------
+                                                    *adoc_dar_source-language*
+'source-language'
+
+    Allowed Value   : <srccode-name>
+    Set By Default  : No
+    API/CLI Only    : No
+
+    "Default language for source code blocks"`(42)`.
+
+------------------------------------------------------------------------------
+                                            *adoc_dar_source-linenums-options*
+'source-linenums-options'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    API/CLI Only    : No
+
+    Turns on line numbers for source code listings.
+
+------------------------------------------------------------------------------
+39) https://docs.asciidoctor.org/asciidoctor/latest/html-backend/verbatim-line-wrap/
+40) https://github.com/asciidoctor/asciidoctor/issues/3641
+41) https://docs.asciidoctor.org/asciidoc/latest/verbatim/source-highlighter/
+42) https://docs.asciidoctor.org/asciidoc/latest/verbatim/source-highlighter/
+
+==============================================================================
+HTML styling attributes                                        *adoc_dar_html*
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_copycss*
+'copycss'
+
+    Allowed Value   : <empty|file-path> //default: empty
+    Set By Default  : Yes
+    API/CLI Only    : Yes
+
+    Copy CSS files to output. Only relevant when the linkcss attribute is set.
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_css-signature*
+'css-signature'
+
+    Allowed Value   : <valid-XML-ID>
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Assign value to id attribute of HTML <body> element. Preferred approach is
+    to assign an ID to document title.
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_linkcss*
+'linkcss'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Links to stylesheet instead of embedding it. Can’t be unset in SECURE
+    mode.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_max-width*
+'max-width'
+
+    Allowed Value   : <css-length>  //ex. 55em, 12cm, etc.
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Constrains maximum width of document body. Not recommended. Use CSS
+    stylesheet instead.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_stylesdir*
+'stylesdir'
+
+    Allowed Value   : <url|directory-path>
+    Set By Default  : Yes
+    API/CLI Only    : Yes
+
+    Location of CSS stylesheets.
+
+------------------------------------------------------------------------------
+                                                         *adoc_dar_stylesheet*
+'stylesheet'
+
+    Allowed Value   : <empty|file-path>
+    Set By Default  : Yes
+    API/CLI Only    : Yes
+
+    CSS stylesheet file name. An empty value tells the converter to use the
+    default stylesheet.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_toc-class*
+'toc-class'
+
+    Allowed Value   : <class-name>
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    CSS class on the table of contents container. Notice: valid CSS class name
+    (toc) or (toc2) if toc=left.
+
+
+==============================================================================
+Manpage attributes                                          *adoc_dar_manpage*
+
+The attribute in this section are only relevant when using the manpage doctype
+and/or backend.
+
+------------------------------------------------------------------------------
+                                                           *adoc_dar_mantitle*
+'mantitle'
+
+    Allowed Value   : any
+    Set By Default  : Based on content
+    API/CLI Only    : Yes
+
+    Metadata for man page output.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_manvolume*
+'manvolume'
+
+    Allowed Value   : any
+    Set By Default  : Based on content
+    API/CLI Only    : Yes
+
+    Metadata for man page output.
+
+------------------------------------------------------------------------------
+                                                            *adoc_dar_manname*
+'manname'
+
+    Allowed Value   : any
+    Set By Default  : Based on content
+    API/CLI Only    : Yes
+
+    Metadata for man page output.
+
+------------------------------------------------------------------------------
+                                                         *adoc_dar_manpurpose*
+'manpurpose'
+
+    Allowed Value   : any
+    Set By Default  : Based on content
+    API/CLI Only    : Yes
+
+    Metadata for man page output.
+
+------------------------------------------------------------------------------
+                                                      *adoc_dar_man-linkstyle*
+'man-linkstyle'
+
+    Allowed Value   : <link-format-pattern> //default: blue R <>
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Link style in man page output.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_mansource*
+'mansource'
+
+    Allowed Value   : any
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Source (e.g., application and version) the man page describes.
+
+------------------------------------------------------------------------------
+                                                          *adoc_dar_manmanual*
+'manmanual'
+
+    Allowed Value   : any
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Manual name displayed in the man page footer.
+
+
+==============================================================================
+Security attributes                                        *adoc_dar_security*
+
+Since these attributes deal with security, they can only be set from the API
+or CLI.
+
+------------------------------------------------------------------------------
+                                                     *adoc_dar_allow-uri-read*
+'allow-uri-read'
+
+    Allowed Value   : empty
+    Set By Default  : No
+    API/CLI Only    : Yes
+
+    Allows data to be read from URLs.
+
+------------------------------------------------------------------------------
+                                           *adoc_dar_max-attribute-value-size*
+'max-attribute-value-size'
+
+    Allowed Value   : <integer> //default: 4096; Constrains: >= 0
+    Set By Default  : If safe mode is SECURE
+    API/CLI Only    : Yes
+
+    Limits maximum size (in bytes) of a resolved attribute value. Default
+    value is only set in SECURE mode. Since attributes can reference
+    attributes, it’s possible to create an output document disproportionately
+    larger than the input document without this limit in place.
+
+------------------------------------------------------------------------------
+                                                  *adoc_dar_max-include-depth*
+'max-include-depth'
+
+    Allowed Value   : <integer> //default: 64; Constrains: >= 0
+    Set By Default  : Yes
+    API/CLI Only    : Yes
+
+    Curtail infinite include loops and to limit the opportunity to exploit
+    nested includes to compound the size of the output document.
+
+
+------------------------------------------------------------------------------
+50) The -number attributes are created and managed automatically by the
+   AsciiDoc processor for numbered blocks. They are only used if the
+   corresponding -caption attribute is set (e.g., listing-caption) and the
+   block has a title. In Asciidoctor, setting the -number attributes will
+   influence the next number used for subsequent numbered blocks of that type.
+   However, you should not rely on this behavior as it is subject to change in
+   future revisions of the language.
+
+
+==============================================================================
+INDEX                                                         *adoc_dar_index*
+
+------------------------------------------------------------------------------
+allow-uri-read ..................................... |adoc_dar_allow-uri-read|
+appendix-caption ................................. |adoc_dar_appendix-caption|
+appendix-number ................................... |adoc_dar_appendix-number|
+appendix-refsig ................................... |adoc_dar_appendix-refsig|
+app-name ................................................. |adoc_dar_app-name|
+asset-uri-schema ................................. |adoc_dar_asset-uri-schema|
+attribute-missing ............................... |adoc_dar_attribute-missing|
+attribute-undefined ........................... |adoc_dar_attribute-undefined|
+author ..................................................... |adoc_dar_author|
+authorinitials ..................................... |adoc_dar_authorinitials|
+authors ................................................... |adoc_dar_authors|
+backend ................................................... |adoc_dar_backend|
+basebackend ........................................... |adoc_dar_basebackend|
+cache-uri ............................................... |adoc_dar_cache-uri|
+caution-caption ................................... |adoc_dar_caution-caption|
+chapter-number ..................................... |adoc_dar_chapter-number|
+chapter-refsig ..................................... |adoc_dar_chapter-refsig|
+chapter-signifier ............................... |adoc_dar_chapter-signifier|
+coderay-css ........................................... |adoc_dar_coderay-css|
+coderay-linenums-mode ....................... |adoc_dar_coderay-linenums-mode|
+coderay-unavailable ........................... |adoc_dar_coderay-unavailable|
+compat-mode ........................................... |adoc_dar_compat-mode|
+copycss ................................................... |adoc_dar_copycss|
+copyright ............................................... |adoc_dar_copyright|
+css-signature ....................................... |adoc_dar_css-signature|
+data-uri ................................................. |adoc_dar_data-uri|
+description ........................................... |adoc_dar_description|
+docdate ................................................... |adoc_dar_docdate|
+docdatetime ........................................... |adoc_dar_docdatetime|
+docdir ..................................................... |adoc_dar_docdir|
+docfile ................................................... |adoc_dar_docfile|
+docfilesuffix ....................................... |adoc_dar_docfilesuffix|
+docinfo ................................................... |adoc_dar_docinfo|
+docinfodir ............................................. |adoc_dar_docinfodir|
+docinfosubs ........................................... |adoc_dar_docinfosubs|
+docname ................................................... |adoc_dar_docname|
+doctime ................................................... |adoc_dar_doctime|
+doctitle ................................................. |adoc_dar_doctitle|
+doctype ................................................... |adoc_dar_doctype|
+docyear ................................................... |adoc_dar_docyear|
+email ....................................................... |adoc_dar_email|
+embedded ................................................. |adoc_dar_embedded|
+eqnums ..................................................... |adoc_dar_eqnums|
+example-caption ................................... |adoc_dar_example-caption|
+example-number ..................................... |adoc_dar_example-number|
+experimental ......................................... |adoc_dar_experimental|
+figure-caption ..................................... |adoc_dar_figure-caption|
+figure-number ....................................... |adoc_dar_figure-number|
+filetype ................................................. |adoc_dar_filetype|
+firstname ............................................... |adoc_dar_firstname|
+footnote-number ................................... |adoc_dar_footnote-number|
+fragment ................................................. |adoc_dar_fragment|
+front-matter ......................................... |adoc_dar_front-matter|
+hardbreaks-option ............................... |adoc_dar_hardbreaks-option|
+hide-uri-scheme ................................... |adoc_dar_hide-uri-scheme|
+highlightjsdir ..................................... |adoc_dar_highlightjsdir|
+highlightjs-theme ............................... |adoc_dar_highlightjs-theme|
+htmlsyntax ............................................. |adoc_dar_htmlsyntax|
+iconfont-cdn ......................................... |adoc_dar_iconfont-cdn|
+iconfont-name ....................................... |adoc_dar_iconfont-name|
+iconfont-remote ................................... |adoc_dar_iconfont-remote|
+icons ....................................................... |adoc_dar_icons|
+iconsdir ................................................. |adoc_dar_iconsdir|
+icontype ................................................. |adoc_dar_icontype|
+idprefix ................................................. |adoc_dar_idprefix|
+idseperator ........................................... |adoc_dar_idseperator|
+imagedir ................................................. |adoc_dar_imagedir|
+important-caption ............................... |adoc_dar_important-caption|
+keywords ................................................. |adoc_dar_keywords|
+lang ......................................................... |adoc_dar_lang|
+lastname ................................................. |adoc_dar_lastname|
+last-update-label ............................... |adoc_dar_last-update-label|
+leveloffset ........................................... |adoc_dar_leveloffset|
+linkcss ................................................... |adoc_dar_linkcss|
+listing-caption ................................... |adoc_dar_listing-caption|
+listing-number ..................................... |adoc_dar_listing-number|
+localdate ............................................... |adoc_dar_localdate|
+localdatetime ....................................... |adoc_dar_localdatetime|
+localtime ............................................... |adoc_dar_localtime|
+man-linkstyle ....................................... |adoc_dar_man-linkstyle|
+manmanual ............................................... |adoc_dar_manmanual|
+manname ................................................... |adoc_dar_manname|
+manname-title ....................................... |adoc_dar_manname-title|
+manpurpose ............................................. |adoc_dar_manpurpose|
+mansource ............................................... |adoc_dar_mansource|
+mantitle ................................................. |adoc_dar_mantitle|
+manvolume ............................................... |adoc_dar_manvolume|
+max-attribute-value-size ................. |adoc_dar_max-attribute-value-size|
+max-include-depth ............................... |adoc_dar_max-include-depth|
+max-width ............................................... |adoc_dar_max-width|
+media ....................................................... |adoc_dar_media|
+middlename ............................................. |adoc_dar_middlename|
+nofooter ................................................. |adoc_dar_nofooter|
+nofootnotes ........................................... |adoc_dar_nofootnotes|
+noheader ................................................. |adoc_dar_noheader|
+nolang ..................................................... |adoc_dar_nolang|
+note-caption ......................................... |adoc_dar_note-caption|
+notitle ................................................... |adoc_dar_notitle|
+orgname ................................................... |adoc_dar_orgname|
+outdir ..................................................... |adoc_dar_outdir|
+outfile ................................................... |adoc_dar_outfile|
+outfilesuffix ....................................... |adoc_dar_outfilesuffix|
+outfilesuffix ....................................... |adoc_dar_outfilesuffix|
+pagewidth ............................................... |adoc_dar_pagewidth|
+partnums ................................................. |adoc_dar_partnums|
+part-refsig ........................................... |adoc_dar_part-refsig|
+part-signifier ..................................... |adoc_dar_part-signifier|
+preface-title ....................................... |adoc_dar_preface-title|
+prettifydir ........................................... |adoc_dar_prettifydir|
+prettify-theme ..................................... |adoc_dar_prettify-theme|
+prewrap ................................................... |adoc_dar_prewrap|
+pygments-css ......................................... |adoc_dar_pygments-css|
+pygments-linenums-mode ..................... |adoc_dar_pygments-linenums-mode|
+pygments-style ..................................... |adoc_dar_pygments-style|
+pygments-unavailable ......................... |adoc_dar_pygments-unavailable|
+relfileprefix ....................................... |adoc_dar_relfileprefix|
+relfilesuffix ....................................... |adoc_dar_relfilesuffix|
+reproducible ......................................... |adoc_dar_reproducible|
+revdate ................................................... |adoc_dar_revdate|
+revnumber ............................................... |adoc_dar_revnumber|
+revremark ............................................... |adoc_dar_revremark|
+rouge-css ............................................... |adoc_dar_rouge-css|
+rouge-linenums-mode ........................... |adoc_dar_rouge-linenums-mode|
+rouge-style ........................................... |adoc_dar_rouge-style|
+rouge-unavailable ............................... |adoc_dar_rouge-unavailable|
+safe-mode-level ................................... |adoc_dar_safe-mode-level|
+safe-mode-name ..................................... |adoc_dar_safe-mode-name|
+safe-mode-safe ..................................... |adoc_dar_safe-mode-safe|
+safe-mode-secure ................................. |adoc_dar_safe-mode-secure|
+safe-mode-server ................................. |adoc_dar_safe-mode-server|
+safe-mode-unsafe ................................. |adoc_dar_safe-mode-unsafe|
+sectanchors ........................................... |adoc_dar_sectanchors|
+sectids ................................................... |adoc_dar_sectids|
+section-refsig ..................................... |adoc_dar_section-refsig|
+sectlinks ............................................... |adoc_dar_sectlinks|
+sectnumlevels ....................................... |adoc_dar_sectnumlevels|
+sectnums ................................................. |adoc_dar_sectnums|
+show-link-uri ....................................... |adoc_dar_show-link-uri|
+showtitle ............................................... |adoc_dar_showtitle|
+skip-front-matter ............................... |adoc_dar_skip-front-matter|
+source-highlighter ............................. |adoc_dar_source-highlighter|
+source-indent ....................................... |adoc_dar_source-indent|
+source-language ................................... |adoc_dar_source-language|
+source-linenums-options ................... |adoc_dar_source-linenums-options|
+stem ......................................................... |adoc_dar_stem|
+stylesdir ............................................... |adoc_dar_stylesdir|
+stylesheet ............................................. |adoc_dar_stylesheet|
+table-caption ....................................... |adoc_dar_table-caption|
+table-frame ........................................... |adoc_dar_table-frame|
+table-grid ............................................. |adoc_dar_table-grid|
+table-number ......................................... |adoc_dar_table-number|
+table-stripes ....................................... |adoc_dar_table-stripes|
+tabsize ................................................... |adoc_dar_tabsize|
+tip-caption ........................................... |adoc_dar_tip-caption|
+title ....................................................... |adoc_dar_title|
+title-separator ................................... |adoc_dar_title-separator|
+toc ........................................................... |adoc_dar_toc|
+toc-class ............................................... |adoc_dar_toc-class|
+toclevels ............................................... |adoc_dar_toclevels|
+toc-title ............................................... |adoc_dar_toc-title|
+untitled-label ..................................... |adoc_dar_untitled-label|
+user-home ............................................... |adoc_dar_user-home|
+version-label ....................................... |adoc_dar_version-label|
+warning-caption ................................... |adoc_dar_warning-caption|
+webfonts ................................................. |adoc_dar_webfonts|
+xrefstyle ............................................... |adoc_dar_xrefstyle|
+------------------------------------------------------------------------------
+
+vim:tw=78:ts=8:et:ft=help:norl:
