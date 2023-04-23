@@ -1,0 +1,80 @@
+snippet adoc_init "Document init"
+= *<TITLE>*
+:author: <Author name>
+:email: <Author email>
+:revnumber: <Version (v1.0)>
+:revremark: <Revision (alpha)>
+:revdate: <Date (DD.MM.YYYY)>
+:copyright: © All rights reserved
+:toc: left
+:toclevels: 5
+:sectnums:
+:icons: font
+:lang: de
+:source-highlighter: pygments
+:stylesdir: res/styles/css/
+:stylesheet: custom.css
+//:linkcss:
+:imagesdir: res/images
+:iconsdir: styles/icons
+:scriptsdir: ./js
+:!noheader:
+:nofooter:
+:!notitle:
+:sectanchors:
+:xrefstyle: full
+//embed graphics as data-uri in HTML (self-contained)
+:data-uri:
+//@options: skip, drop, drop-line, warn
+:attribute-missing: warn
+:docinfo: shared,private-footer
+//use CLI attribute lang, e.g. -a lang=de
+include::res/locale/attributes.adoc[]
+//:toc-title: <TOC-TITLE (Inhalt)>
+//:docdate: <DATE (YYYY-MM-DD)>
+//:doctime: <TIME (HH:MM:SS UTC)>
+//:docdatetime: <DATETIME (YYYY-MM-DD HH:MM:SS UTC)>
+:experimental:
+//prevent last-updated date from being added to HTML footer or DocBook info element. Or use env "SOURCE_DATE_EPOCH"
+:reproducible:
+//Doc-as-Code
+
+<TEXT>
+endsnippet
+
+snippet adoc_list_unordered "unordered list"
+//multiple lines: +
+//separate: //-
+//[square|circle|disc|none|unstyled]
+* Level 1
+** Level 2
+*** Level 3
+endsnippet
+
+snippet adoc_list_ordered "ordered list"
+//multiple lines: +
+//separate: //-
+//number-styles: arabic, decimal, loweralpha, upperalpha, lowerroman, upperroman, lowergreek
+//[<number-style>,start=1%reversed]
+. Level 1
+.. Level 2
+... Level 3
+endsnippet
+
+snippet adoc_list_check "check list"
+//multiple lines: +
+//separate: //-
+//]%interactive]
+* [x] checked
+* [x] also checked
+* [ ] not checked
+* normal list item
+endsnippet
+
+snippet adoc_break "break line"
+'''
+endsnippet
+
+snippet adoc_pagebreak "define page break"
+<<<
+endsnippet
