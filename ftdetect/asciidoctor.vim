@@ -1,2 +1,2 @@
-autocmd BufNewFile,BufRead *.asciidoc,*.adoc
+autocmd BufNewFile,BufRead *.asciidoc,*.adoc,*.ad
 	\ set ft=asciidoctor
